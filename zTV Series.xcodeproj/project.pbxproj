@@ -27,6 +27,18 @@
 		598F5FE81C7EF17C00BD59A8 /* DynamicLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 598F5FE31C7EF17C00BD59A8 /* DynamicLabel.m */; };
 		598F5FE91C7EF17C00BD59A8 /* RoundedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 598F5FE51C7EF17C00BD59A8 /* RoundedLabel.m */; };
 		598F5FEA1C7EF17C00BD59A8 /* UnderlinedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 598F5FE71C7EF17C00BD59A8 /* UnderlinedLabel.m */; };
+		598F5FEE1C7F219000BD59A8 /* ShowDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 598F5FED1C7F219000BD59A8 /* ShowDetailViewController.m */; };
+		598F5FF11C7F255200BD59A8 /* DoubleUnderlinedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 598F5FF01C7F255200BD59A8 /* DoubleUnderlinedLabel.m */; };
+		598F5FF51C7F260900BD59A8 /* Episode.m in Sources */ = {isa = PBXBuildFile; fileRef = 598F5FF41C7F260900BD59A8 /* Episode.m */; };
+		598F5FF91C7F32E900BD59A8 /* EpisodeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 598F5FF81C7F32E900BD59A8 /* EpisodeDetailViewController.m */; };
+		598F5FFD1C7F390300BD59A8 /* GCPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 598F5FFC1C7F390300BD59A8 /* GCPlaceholderTextView.m */; };
+		598F60011C7F395B00BD59A8 /* AddCommentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 598F60001C7F395B00BD59A8 /* AddCommentTableViewController.m */; };
+		598F60061C7F3BF800BD59A8 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 598F60051C7F3BF800BD59A8 /* Comment.m */; };
+		598F600D1C7F50D300BD59A8 /* ZUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 598F600C1C7F50D300BD59A8 /* ZUser.m */; };
+		598F60121C7F5E2800BD59A8 /* AkiraTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598F600F1C7F5E2800BD59A8 /* AkiraTextField.swift */; };
+		598F60131C7F5E2800BD59A8 /* KaedeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598F60101C7F5E2800BD59A8 /* KaedeTextField.swift */; };
+		598F60141C7F5E2800BD59A8 /* YokoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598F60111C7F5E2800BD59A8 /* YokoTextField.swift */; };
+		598F60161C7F5E5C00BD59A8 /* TextFieldsEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598F60151C7F5E5C00BD59A8 /* TextFieldsEffects.swift */; };
 		8AED85CA7413BD9C6AB46B99 /* libPods-zTV Series.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A2576276E47C337B13DB973 /* libPods-zTV Series.a */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +82,26 @@
 		598F5FE51C7EF17C00BD59A8 /* RoundedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedLabel.m; sourceTree = "<group>"; };
 		598F5FE61C7EF17C00BD59A8 /* UnderlinedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnderlinedLabel.h; sourceTree = "<group>"; };
 		598F5FE71C7EF17C00BD59A8 /* UnderlinedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnderlinedLabel.m; sourceTree = "<group>"; };
+		598F5FEC1C7F219000BD59A8 /* ShowDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShowDetailViewController.h; path = Controllers/ShowDetailViewController.h; sourceTree = "<group>"; };
+		598F5FED1C7F219000BD59A8 /* ShowDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShowDetailViewController.m; path = Controllers/ShowDetailViewController.m; sourceTree = "<group>"; };
+		598F5FEF1C7F255200BD59A8 /* DoubleUnderlinedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleUnderlinedLabel.h; sourceTree = "<group>"; };
+		598F5FF01C7F255200BD59A8 /* DoubleUnderlinedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoubleUnderlinedLabel.m; sourceTree = "<group>"; };
+		598F5FF31C7F260900BD59A8 /* Episode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Episode.h; path = Model/Episode.h; sourceTree = "<group>"; };
+		598F5FF41C7F260900BD59A8 /* Episode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Episode.m; path = Model/Episode.m; sourceTree = "<group>"; };
+		598F5FF71C7F32E900BD59A8 /* EpisodeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EpisodeDetailViewController.h; path = Controllers/EpisodeDetailViewController.h; sourceTree = "<group>"; };
+		598F5FF81C7F32E900BD59A8 /* EpisodeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EpisodeDetailViewController.m; path = Controllers/EpisodeDetailViewController.m; sourceTree = "<group>"; };
+		598F5FFB1C7F390300BD59A8 /* GCPlaceholderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCPlaceholderTextView.h; sourceTree = "<group>"; };
+		598F5FFC1C7F390300BD59A8 /* GCPlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCPlaceholderTextView.m; sourceTree = "<group>"; };
+		598F5FFF1C7F395B00BD59A8 /* AddCommentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddCommentTableViewController.h; path = Controllers/AddCommentTableViewController.h; sourceTree = "<group>"; };
+		598F60001C7F395B00BD59A8 /* AddCommentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddCommentTableViewController.m; path = Controllers/AddCommentTableViewController.m; sourceTree = "<group>"; };
+		598F60041C7F3BF800BD59A8 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Comment.h; path = Model/Comment.h; sourceTree = "<group>"; };
+		598F60051C7F3BF800BD59A8 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Comment.m; path = Model/Comment.m; sourceTree = "<group>"; };
+		598F600B1C7F50D300BD59A8 /* ZUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZUser.h; path = Model/ZUser.h; sourceTree = "<group>"; };
+		598F600C1C7F50D300BD59A8 /* ZUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZUser.m; path = Model/ZUser.m; sourceTree = "<group>"; };
+		598F600F1C7F5E2800BD59A8 /* AkiraTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AkiraTextField.swift; sourceTree = "<group>"; };
+		598F60101C7F5E2800BD59A8 /* KaedeTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KaedeTextField.swift; sourceTree = "<group>"; };
+		598F60111C7F5E2800BD59A8 /* YokoTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YokoTextField.swift; sourceTree = "<group>"; };
+		598F60151C7F5E5C00BD59A8 /* TextFieldsEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldsEffects.swift; sourceTree = "<group>"; };
 		5A2576276E47C337B13DB973 /* libPods-zTV Series.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-zTV Series.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		69C30FE83D13ABC3971E672F /* Pods-zTV Series.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zTV Series.debug.xcconfig"; path = "Pods/Target Support Files/Pods-zTV Series/Pods-zTV Series.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -179,6 +211,7 @@
 		5901CCDE1C7E064700656CE1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				598F600E1C7F5E2800BD59A8 /* Text Fields */,
 				598F5FE11C7EF17C00BD59A8 /* Labels */,
 				598F5FD91C7EEECE00BD59A8 /* Cells */,
 				597096AE1C7EBA540080B59B /* Launch */,
@@ -190,7 +223,10 @@
 		5901CCDF1C7E065B00656CE1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				598F60071C7F411A00BD59A8 /* User */,
+				598F60021C7F3BE800BD59A8 /* Comment */,
 				598F5FD51C7EE6F900BD59A8 /* TVShow */,
+				598F5FF21C7F25FA00BD59A8 /* Episode */,
 				5901CCF71C7E337A00656CE1 /* DBManager */,
 			);
 			name = Model;
@@ -199,6 +235,7 @@
 		5901CCEF1C7E2C3B00656CE1 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				598F5FFA1C7F390300BD59A8 /* GCPlaceholderTextView */,
 				598F5FDD1C7EF11400BD59A8 /* UIImage+ImageEffects */,
 			);
 			name = Libraries;
@@ -246,6 +283,8 @@
 			children = (
 				597096BA1C7ED9090080B59B /* MyShowsTableViewController.h */,
 				597096BB1C7ED9090080B59B /* MyShowsTableViewController.m */,
+				598F5FEB1C7F217200BD59A8 /* Show Detail */,
+				598F5FF61C7F32D600BD59A8 /* Episode Detail */,
 				597096C01C7EDA570080B59B /* Add */,
 			);
 			name = "My Shows";
@@ -299,6 +338,8 @@
 		598F5FE11C7EF17C00BD59A8 /* Labels */ = {
 			isa = PBXGroup;
 			children = (
+				598F5FEF1C7F255200BD59A8 /* DoubleUnderlinedLabel.h */,
+				598F5FF01C7F255200BD59A8 /* DoubleUnderlinedLabel.m */,
 				598F5FE21C7EF17C00BD59A8 /* DynamicLabel.h */,
 				598F5FE31C7EF17C00BD59A8 /* DynamicLabel.m */,
 				598F5FE41C7EF17C00BD59A8 /* RoundedLabel.h */,
@@ -307,6 +348,81 @@
 				598F5FE71C7EF17C00BD59A8 /* UnderlinedLabel.m */,
 			);
 			path = Labels;
+			sourceTree = "<group>";
+		};
+		598F5FEB1C7F217200BD59A8 /* Show Detail */ = {
+			isa = PBXGroup;
+			children = (
+				598F5FEC1C7F219000BD59A8 /* ShowDetailViewController.h */,
+				598F5FED1C7F219000BD59A8 /* ShowDetailViewController.m */,
+			);
+			name = "Show Detail";
+			sourceTree = "<group>";
+		};
+		598F5FF21C7F25FA00BD59A8 /* Episode */ = {
+			isa = PBXGroup;
+			children = (
+				598F5FF31C7F260900BD59A8 /* Episode.h */,
+				598F5FF41C7F260900BD59A8 /* Episode.m */,
+			);
+			name = Episode;
+			sourceTree = "<group>";
+		};
+		598F5FF61C7F32D600BD59A8 /* Episode Detail */ = {
+			isa = PBXGroup;
+			children = (
+				598F5FF71C7F32E900BD59A8 /* EpisodeDetailViewController.h */,
+				598F5FF81C7F32E900BD59A8 /* EpisodeDetailViewController.m */,
+				598F5FFE1C7F394F00BD59A8 /* Add Comment */,
+			);
+			name = "Episode Detail";
+			sourceTree = "<group>";
+		};
+		598F5FFA1C7F390300BD59A8 /* GCPlaceholderTextView */ = {
+			isa = PBXGroup;
+			children = (
+				598F5FFB1C7F390300BD59A8 /* GCPlaceholderTextView.h */,
+				598F5FFC1C7F390300BD59A8 /* GCPlaceholderTextView.m */,
+			);
+			path = GCPlaceholderTextView;
+			sourceTree = "<group>";
+		};
+		598F5FFE1C7F394F00BD59A8 /* Add Comment */ = {
+			isa = PBXGroup;
+			children = (
+				598F5FFF1C7F395B00BD59A8 /* AddCommentTableViewController.h */,
+				598F60001C7F395B00BD59A8 /* AddCommentTableViewController.m */,
+			);
+			name = "Add Comment";
+			sourceTree = "<group>";
+		};
+		598F60021C7F3BE800BD59A8 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				598F60041C7F3BF800BD59A8 /* Comment.h */,
+				598F60051C7F3BF800BD59A8 /* Comment.m */,
+			);
+			name = Comment;
+			sourceTree = "<group>";
+		};
+		598F60071C7F411A00BD59A8 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				598F600B1C7F50D300BD59A8 /* ZUser.h */,
+				598F600C1C7F50D300BD59A8 /* ZUser.m */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
+		598F600E1C7F5E2800BD59A8 /* Text Fields */ = {
+			isa = PBXGroup;
+			children = (
+				598F60151C7F5E5C00BD59A8 /* TextFieldsEffects.swift */,
+				598F600F1C7F5E2800BD59A8 /* AkiraTextField.swift */,
+				598F60101C7F5E2800BD59A8 /* KaedeTextField.swift */,
+				598F60111C7F5E2800BD59A8 /* YokoTextField.swift */,
+			);
+			path = "Text Fields";
 			sourceTree = "<group>";
 		};
 		C4DBDD6AD1A7C5778BE05048 /* Frameworks */ = {
@@ -442,19 +558,31 @@
 				5901CCFA1C7E33A700656CE1 /* DBManager.m in Sources */,
 				598F5FE01C7EF11400BD59A8 /* UIImage+ImageEffects.m in Sources */,
 				597096B81C7ED8FD0080B59B /* FavouritesTableViewController.m in Sources */,
+				598F600D1C7F50D300BD59A8 /* ZUser.m in Sources */,
+				598F5FFD1C7F390300BD59A8 /* GCPlaceholderTextView.m in Sources */,
 				5901CCC81C7E061500656CE1 /* AppDelegate.m in Sources */,
 				5901CCEA1C7E2B2E00656CE1 /* LoginTableViewController.m in Sources */,
+				598F60061C7F3BF800BD59A8 /* Comment.m in Sources */,
 				5901CCC51C7E061500656CE1 /* main.m in Sources */,
 				598F5FEA1C7EF17C00BD59A8 /* UnderlinedLabel.m in Sources */,
+				598F60161C7F5E5C00BD59A8 /* TextFieldsEffects.swift in Sources */,
 				597096BF1C7ED9140080B59B /* ToWatchTableViewController.m in Sources */,
 				598F5FDC1C7EEEE300BD59A8 /* ShowsTableViewCell.m in Sources */,
 				598F5FE81C7EF17C00BD59A8 /* DynamicLabel.m in Sources */,
 				5901CCF31C7E2CEA00656CE1 /* RawQueryViewController.m in Sources */,
+				598F60141C7F5E2800BD59A8 /* YokoTextField.swift in Sources */,
+				598F60121C7F5E2800BD59A8 /* AkiraTextField.swift in Sources */,
 				597096BC1C7ED9090080B59B /* MyShowsTableViewController.m in Sources */,
+				598F60011C7F395B00BD59A8 /* AddCommentTableViewController.m in Sources */,
+				598F5FF51C7F260900BD59A8 /* Episode.m in Sources */,
+				598F5FEE1C7F219000BD59A8 /* ShowDetailViewController.m in Sources */,
 				597096C31C7EDA620080B59B /* AddShowTableViewController.m in Sources */,
+				598F60131C7F5E2800BD59A8 /* KaedeTextField.swift in Sources */,
+				598F5FF91C7F32E900BD59A8 /* EpisodeDetailViewController.m in Sources */,
 				598F5FE91C7EF17C00BD59A8 /* RoundedLabel.m in Sources */,
 				598F5FD81C7EE70700BD59A8 /* TVShow.m in Sources */,
 				5901CCF61C7E2E0200656CE1 /* RawQuerySetupTableViewController.m in Sources */,
+				598F5FF11C7F255200BD59A8 /* DoubleUnderlinedLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

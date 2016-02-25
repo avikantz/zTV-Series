@@ -23,6 +23,9 @@
 #import "DBManager.h"
 
 #import "TVShow.h"
+#import "Episode.h"
+#import "Comment.h"
+#import "ZUser.h"
 
 #define SWidth [UIScreen mainScreen].bounds.size.width
 #define SHeight [UIScreen mainScreen].bounds.size.height

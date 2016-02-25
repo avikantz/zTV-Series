@@ -12,8 +12,6 @@
 
 @property (nonatomic, strong) FMDatabase *database;
 
-@property (nonatomic, strong) NSString *username;
-
 @end
 
 @implementation DBManager
@@ -50,18 +48,18 @@
 - (BOOL)loginUserWithUsername:(NSString *)username andPassword:(NSString *)password error:(NSError *__autoreleasing *)error {
 	
 	NSArray *arr = [self dbExecuteQuery:[NSString stringWithFormat:@"SELECT * FROM User WHERE username = '%@'", username] error:nil];
+	NSArray *users = [ZUser returnArrayFromJSONStructure:arr];
 	
 	if (arr.count > 0) {
 		
 		NSLog(@"User already exists, logging in...");
-		
-		self.username = username;
+	
+		self.user = [users firstObject];
 		
 		NSString *savedPassword;
 		
 		@try {
 			savedPassword = [NSString stringWithFormat:@"%@", [[arr firstObject] valueForKey:@"password"]];
-			self.uid = [NSString stringWithFormat:@"%@", [[arr firstObject] valueForKey:@"uid"]];
 		}
 		@catch (NSException *exception) {
 			NSLog(@"Exception in getting uids %@", exception.reason);
@@ -81,13 +79,12 @@
 	if (![self.database executeUpdate:queryString values:nil error:error])
 		return NO;
 	
-	NSLog(@"Signinu up in user: %@", username);
-	
-	self.username = username;
+	NSLog(@"Signing up in user: %@", username);
 	
 	@try {
 		NSArray *arr = [self dbExecuteQuery:[NSString stringWithFormat:@"SELECT uid FROM User WHERE username = '%@'", username] error:nil];
-		self.uid = [NSString stringWithFormat:@"%@", [[arr firstObject] valueForKey:@"uid"]];
+		NSArray *users = [ZUser returnArrayFromJSONStructure:arr];
+		self.user = [users firstObject];
 	}
 	@catch (NSException *exception) {
 		NSLog(@"Getting ID error: %@", exception.reason);

@@ -40,6 +40,23 @@
 	self.queryTextView.text = [NSString stringWithFormat:@"%@%@%@ ", self.queryTextView.text, ([self.queryTextView.text hasSuffix:@"\n"])?@"":@" ", sender.titleLabel.text];
 }
 
+#pragma mark - Table view delegate
+
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.section == [self numberOfSectionsInTableView:tableView] - 1)
+		return YES;
+	return NO;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - Scroll view delegate
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+	[self.queryTextView resignFirstResponder];
+}
 
 #pragma mark - Navigation
 

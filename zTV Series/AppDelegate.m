@@ -19,6 +19,10 @@
 	
 	// Override point for customization after application launch.
 	
+	[SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
+	[SVProgressHUD setBackgroundColor:GLOBAL_BACK_COLOR];
+	[SVProgressHUD setForegroundColor:[UIColor blackColor]];
+	
 	[[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Futura-Medium" size:17.f], NSForegroundColorAttributeName: [UIColor darkTextColor]}];
 	
 	[[UINavigationBar appearance] setBarTintColor:GLOBAL_BACK_COLOR];

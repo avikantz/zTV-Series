@@ -34,7 +34,7 @@
 	
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
 	
 	[self fetchShows];
 	
@@ -50,7 +50,7 @@
 			
 			NSError *error;
 			
-			NSString *queryString = [NSString stringWithFormat:@"SELECT * FROM TVShow WHERE sid NOT IN (SELECT sid FROM Following WHERE uid = %@)", [[DBManager sharedManager] uid]];
+			NSString *queryString = [NSString stringWithFormat:@"SELECT * FROM TVShow WHERE sid NOT IN (SELECT sid FROM Following WHERE uid = %li) ORDER BY rating DESC", [DBManager sharedManager].user.uid];
 			
 			NSArray *results = [[DBManager sharedManager] dbExecuteQuery:queryString error:&error];
 			
@@ -131,7 +131,7 @@
 	
 	NSError *error;
 	
-	NSString *queryString = [NSString stringWithFormat:@"INSERT INTO Following (uid, sid) VALUES  (%@, %li)", [DBManager sharedManager].uid, show.sid];
+	NSString *queryString = [NSString stringWithFormat:@"INSERT INTO Following (uid, sid) VALUES  (%li, %li)", [DBManager sharedManager].user.uid, show.sid];
 	
 	if (![[DBManager sharedManager] dbExecuteUpdate:queryString error:&error]) {
 		SVHUD_FAILURE(error.localizedDescription);

@@ -34,7 +34,7 @@
 			
 			self.status = [NSString stringWithFormat:@"%@", dict[@"status"]];
 			
-			self.rating = [NSString stringWithFormat:@"%@", dict[@"name"]];
+			self.rating = [NSString stringWithFormat:@"%@", dict[@"rating"]];
 			
 			self.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@", dict[@"imageURL"]]];
 			

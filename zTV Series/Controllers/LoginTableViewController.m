@@ -8,7 +8,7 @@
 
 #import "LoginTableViewController.h"
 
-@interface LoginTableViewController ()
+@interface LoginTableViewController () <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
@@ -28,41 +28,68 @@
 	
 }
 
+- (void)login {
+	
+	[[NSUserDefaults standardUserDefaults] setObject:self.usernameField.text forKey:@"currentUsername"];
+	[[NSUserDefaults standardUserDefaults] setObject:self.passwordField.text forKey:@"currentPassword"];
+	
+	if (self.usernameField.text.length < 3) {
+		SVHUD_FAILURE(@"Username less than 3 characters long");
+		return;
+	}
+	if (self.passwordField.text.length < 3) {
+		SVHUD_FAILURE(@"Password less than 3 characters long");
+		return;
+	}
+	
+	NSError *error;
+	if (![[DBManager sharedManager] loginUserWithUsername:self.usernameField.text andPassword:self.passwordField.text error:&error]) {
+		SVHUD_FAILURE(error.localizedDescription);
+		return;
+	}
+	
+	UITabBarController *tabbarVC = [self.storyboard instantiateViewControllerWithIdentifier:@"TabBarVC"];
+	
+	[self.navigationController presentViewController:tabbarVC animated:YES completion:^{
+		self.view.window.rootViewController = tabbarVC;
+	}];
+	
+}
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	if (indexPath.section == 1 && indexPath.row == 0) {
 		
-		// Present Tab Bar VC
-		
-		[[NSUserDefaults standardUserDefaults] setObject:self.usernameField.text forKey:@"currentUsername"];
-		[[NSUserDefaults standardUserDefaults] setObject:self.passwordField.text forKey:@"currentPassword"];
-		
-		if (self.usernameField.text.length < 3) {
-			SVHUD_FAILURE(@"Username less than 3 characters long");
-			return;
-		}
-		if (self.passwordField.text.length < 3) {
-			SVHUD_FAILURE(@"Password less than 3 characters long");
-			return;
-		}
-		
-		NSError *error;
-		if (![[DBManager sharedManager] loginUserWithUsername:self.usernameField.text andPassword:self.passwordField.text error:&error]) {
-			SVHUD_FAILURE(error.localizedDescription);
-			return;
-		}
-		
-		UITabBarController *tabbarVC = [self.storyboard instantiateViewControllerWithIdentifier:@"TabBarVC"];
-		
-		[self.navigationController presentViewController:tabbarVC animated:YES completion:^{
-			self.view.window.rootViewController = tabbarVC;
-		}];
+		[self login];
 		
 	}
 	
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - Scroll view delegate
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+	[self.view endEditing:YES];
+}
+
+#pragma mark - Text field delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+	
+	if (textField == self.usernameField) {
+		[self.usernameField resignFirstResponder];
+		[self.passwordField becomeFirstResponder];
+	}
+	
+	else if (textField == self.passwordField) {
+		[self.passwordField resignFirstResponder];
+		[self login];
+	}
+	
+	return YES;
 }
 
 /*

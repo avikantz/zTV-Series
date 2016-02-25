@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class ZUser;
+
 @interface DBManager : NSObject
 
-@property (nonatomic, strong) NSString *uid;
+@property (nonatomic, strong) ZUser *user;
 
 - (instancetype)initWithDatabasePath:(NSString *)path;
 

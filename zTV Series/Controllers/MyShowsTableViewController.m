@@ -7,6 +7,7 @@
 //
 
 #import "MyShowsTableViewController.h"
+#import "ShowDetailViewController.h"
 #import "ShowsTableViewCell.h"
 
 @interface MyShowsTableViewController () <DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, UISearchResultsUpdating>
@@ -34,13 +35,13 @@
 	
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
 	
 	[self fetchShows];
 	
 }
 
-- (void)fetchShows {
+- (void)fetchShowsOrderedBy:(NSString *)ordering {
 	
 	SVHUD_SHOW;
 	
@@ -50,11 +51,11 @@
 			
 			NSError *error;
 			
-			NSString *queryString = [NSString stringWithFormat:@"SELECT * FROM TVShow WHERE sid IN (SELECT sid FROM Following WHERE uid = %@)", [[DBManager sharedManager] uid]];
+			NSString *queryString = [NSString stringWithFormat:@"SELECT * FROM TVShow WHERE sid IN (SELECT sid FROM Following WHERE uid = %li) %@", [DBManager sharedManager].user.uid, ordering];
 			
 			NSArray *results = [[DBManager sharedManager] dbExecuteQuery:queryString error:&error];
 			
-//			NSLog(@"Results : %@", results);
+			//			NSLog(@"Results : %@", results);
 			
 			shows = [TVShow returnArrayFromJSONStructure:results];
 			fshows = [NSMutableArray arrayWithArray:shows];
@@ -68,13 +69,19 @@
 			NSLog(@"Fetch error: %@", exception.reason);
 		}
 		@finally {
-			SVHUD_HIDE;
 			dispatch_async(dispatch_get_main_queue(), ^{
+				SVHUD_HIDE;
 				[self.tableView reloadData];
 			});
 		}
 		
 	});
+	
+}
+
+- (void)fetchShows {
+	
+	[self fetchShowsOrderedBy:@""];
 	
 }
 
@@ -88,6 +95,37 @@
 	self.definesPresentationContext = YES;
 	self.tableView.tableHeaderView = self.searchController.searchBar;
 }
+
+- (IBAction)sortAction:(id)sender {
+	
+	UIAlertAction *nameSortAction = [UIAlertAction actionWithTitle:@"Name (Ascending)" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+		[self fetchShowsOrderedBy:@"ORDER BY name"];
+	}];
+	UIAlertAction *nameSortAction2 = [UIAlertAction actionWithTitle:@"Name (Descending)" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+		[self fetchShowsOrderedBy:@"ORDER BY name DESC"];
+	}];
+	UIAlertAction *premieredSortAction = [UIAlertAction actionWithTitle:@"Newest First" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+		[self fetchShowsOrderedBy:@"ORDER BY premiered"];
+	}];
+	UIAlertAction *premieredSortAction2 = [UIAlertAction actionWithTitle:@"Oldest First" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+		[self fetchShowsOrderedBy:@"ORDER BY premiered DESC"];
+	}];
+	UIAlertAction *ratingSortAction = [UIAlertAction actionWithTitle:@"Rating" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+		[self fetchShowsOrderedBy:@"ORDER BY rating"];
+	}];
+	UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+	
+	UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Sort" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+	[alertController addAction:nameSortAction];
+	[alertController addAction:nameSortAction2];
+	[alertController addAction:premieredSortAction];
+	[alertController addAction:premieredSortAction2];
+	[alertController addAction:ratingSortAction];
+	[alertController addAction:cancel];
+	
+	[self.tabBarController presentViewController:alertController animated:YES completion:nil];
+}
+
 
 #pragma mark - Table view data source
 
@@ -120,6 +158,32 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+	return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+	if (editingStyle == UITableViewCellEditingStyleDelete) {
+		
+		SVHUD_SHOW;
+		
+		TVShow *show = [fshows objectAtIndex:indexPath.row];
+		
+		NSError *error;
+		
+		NSString *queryString = [NSString stringWithFormat:@"DELETE FROM Following WHERE sid = %li AND uid = %li", show.sid, [DBManager sharedManager].user.uid];
+		
+		if (![[DBManager sharedManager] dbExecuteUpdate:queryString error:&error]) {
+			SVHUD_FAILURE(error.localizedDescription);
+		}
+		
+		[self fetchShows];
+		
+	}
 	
 }
 
@@ -157,10 +221,39 @@
 	return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
 
+- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
+	
+	NSString *text = @"Add a show first from the add page.";
+	
+	NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Futura-Medium" size:14.f],
+								 NSForegroundColorAttributeName: [UIColor lightGrayColor]};
+	
+	return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+	
+}
+
 #pragma mark - DZN Empty Data Set Source
 
 - (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView {
 	return (fshows.count == 0);
+}
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	
+	if ([segue.identifier isEqualToString:@"ShowDetailSegue"]) {
+		
+		NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+		
+		TVShow *show = [fshows objectAtIndex:indexPath.row];
+		
+		ShowDetailViewController *sdvc = [segue destinationViewController];
+		
+		sdvc.show = show;
+		
+	}
+	
 }
 
 @end
