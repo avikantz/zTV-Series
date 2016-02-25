@@ -9,23 +9,54 @@
 /* Begin PBXBuildFile section */
 		5901CCC51C7E061500656CE1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5901CCC41C7E061500656CE1 /* main.m */; };
 		5901CCC81C7E061500656CE1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5901CCC71C7E061500656CE1 /* AppDelegate.m */; };
-		5901CCCB1C7E061500656CE1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5901CCCA1C7E061500656CE1 /* ViewController.m */; };
 		5901CCCE1C7E061500656CE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5901CCCC1C7E061500656CE1 /* Main.storyboard */; };
 		5901CCD01C7E061500656CE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5901CCCF1C7E061500656CE1 /* Assets.xcassets */; };
 		5901CCD31C7E061500656CE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5901CCD11C7E061500656CE1 /* LaunchScreen.storyboard */; };
+		5901CCEA1C7E2B2E00656CE1 /* LoginTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5901CCE91C7E2B2E00656CE1 /* LoginTableViewController.m */; };
+		5901CCEE1C7E2C3900656CE1 /* LJCollectionViewTableLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5901CCED1C7E2C3900656CE1 /* LJCollectionViewTableLayout.m */; };
+		5901CCF31C7E2CEA00656CE1 /* RawQueryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5901CCF21C7E2CEA00656CE1 /* RawQueryViewController.m */; };
+		5901CCF61C7E2E0200656CE1 /* RawQuerySetupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5901CCF51C7E2E0200656CE1 /* RawQuerySetupTableViewController.m */; };
+		5901CCFA1C7E33A700656CE1 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5901CCF91C7E33A700656CE1 /* DBManager.m */; };
+		597096B01C7EC0AC0080B59B /* OTVSeries.db in Resources */ = {isa = PBXBuildFile; fileRef = 597096AF1C7EC0AC0080B59B /* OTVSeries.db */; };
+		597096B81C7ED8FD0080B59B /* FavouritesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 597096B71C7ED8FD0080B59B /* FavouritesTableViewController.m */; };
+		597096BC1C7ED9090080B59B /* MyShowsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 597096BB1C7ED9090080B59B /* MyShowsTableViewController.m */; };
+		597096BF1C7ED9140080B59B /* ToWatchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 597096BE1C7ED9140080B59B /* ToWatchTableViewController.m */; };
+		597096C31C7EDA620080B59B /* AddShowTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 597096C21C7EDA620080B59B /* AddShowTableViewController.m */; };
+		8AED85CA7413BD9C6AB46B99 /* libPods-zTV Series.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A2576276E47C337B13DB973 /* libPods-zTV Series.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1279295856E3C7C11C75B5A0 /* Pods-zTV Series.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zTV Series.release.xcconfig"; path = "Pods/Target Support Files/Pods-zTV Series/Pods-zTV Series.release.xcconfig"; sourceTree = "<group>"; };
 		5901CCC01C7E061500656CE1 /* zTV Series.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "zTV Series.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5901CCC41C7E061500656CE1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5901CCC61C7E061500656CE1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5901CCC71C7E061500656CE1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5901CCC91C7E061500656CE1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		5901CCCA1C7E061500656CE1 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		5901CCCD1C7E061500656CE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5901CCCF1C7E061500656CE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5901CCD21C7E061500656CE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5901CCD41C7E061500656CE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5901CCE01C7E070D00656CE1 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		5901CCE81C7E2B2E00656CE1 /* LoginTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginTableViewController.h; path = Controllers/LoginTableViewController.h; sourceTree = "<group>"; };
+		5901CCE91C7E2B2E00656CE1 /* LoginTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginTableViewController.m; path = Controllers/LoginTableViewController.m; sourceTree = "<group>"; };
+		5901CCEC1C7E2C3900656CE1 /* LJCollectionViewTableLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJCollectionViewTableLayout.h; sourceTree = "<group>"; };
+		5901CCED1C7E2C3900656CE1 /* LJCollectionViewTableLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJCollectionViewTableLayout.m; sourceTree = "<group>"; };
+		5901CCF11C7E2CEA00656CE1 /* RawQueryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RawQueryViewController.h; path = Controllers/RawQueryViewController.h; sourceTree = "<group>"; };
+		5901CCF21C7E2CEA00656CE1 /* RawQueryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RawQueryViewController.m; path = Controllers/RawQueryViewController.m; sourceTree = "<group>"; };
+		5901CCF41C7E2E0200656CE1 /* RawQuerySetupTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RawQuerySetupTableViewController.h; path = Controllers/RawQuerySetupTableViewController.h; sourceTree = "<group>"; };
+		5901CCF51C7E2E0200656CE1 /* RawQuerySetupTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RawQuerySetupTableViewController.m; path = Controllers/RawQuerySetupTableViewController.m; sourceTree = "<group>"; };
+		5901CCF81C7E33A700656CE1 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBManager.h; path = Model/DBManager.h; sourceTree = "<group>"; };
+		5901CCF91C7E33A700656CE1 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBManager.m; path = Model/DBManager.m; sourceTree = "<group>"; };
+		597096AF1C7EC0AC0080B59B /* OTVSeries.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = OTVSeries.db; sourceTree = "<group>"; };
+		597096B61C7ED8FD0080B59B /* FavouritesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavouritesTableViewController.h; path = Controllers/FavouritesTableViewController.h; sourceTree = "<group>"; };
+		597096B71C7ED8FD0080B59B /* FavouritesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavouritesTableViewController.m; path = Controllers/FavouritesTableViewController.m; sourceTree = "<group>"; };
+		597096BA1C7ED9090080B59B /* MyShowsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyShowsTableViewController.h; path = Controllers/MyShowsTableViewController.h; sourceTree = "<group>"; };
+		597096BB1C7ED9090080B59B /* MyShowsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyShowsTableViewController.m; path = Controllers/MyShowsTableViewController.m; sourceTree = "<group>"; };
+		597096BD1C7ED9140080B59B /* ToWatchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ToWatchTableViewController.h; path = Controllers/ToWatchTableViewController.h; sourceTree = "<group>"; };
+		597096BE1C7ED9140080B59B /* ToWatchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ToWatchTableViewController.m; path = Controllers/ToWatchTableViewController.m; sourceTree = "<group>"; };
+		597096C11C7EDA620080B59B /* AddShowTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddShowTableViewController.h; path = Controllers/AddShowTableViewController.h; sourceTree = "<group>"; };
+		597096C21C7EDA620080B59B /* AddShowTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddShowTableViewController.m; path = Controllers/AddShowTableViewController.m; sourceTree = "<group>"; };
+		5A2576276E47C337B13DB973 /* libPods-zTV Series.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-zTV Series.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		69C30FE83D13ABC3971E672F /* Pods-zTV Series.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zTV Series.debug.xcconfig"; path = "Pods/Target Support Files/Pods-zTV Series/Pods-zTV Series.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +64,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AED85CA7413BD9C6AB46B99 /* libPods-zTV Series.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0398B2B62C5D6583B8B1BAF2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				69C30FE83D13ABC3971E672F /* Pods-zTV Series.debug.xcconfig */,
+				1279295856E3C7C11C75B5A0 /* Pods-zTV Series.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		5901CCB71C7E061500656CE1 = {
 			isa = PBXGroup;
 			children = (
 				5901CCC21C7E061500656CE1 /* zTV Series */,
 				5901CCC11C7E061500656CE1 /* Products */,
+				0398B2B62C5D6583B8B1BAF2 /* Pods */,
+				C4DBDD6AD1A7C5778BE05048 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,14 +101,12 @@
 		5901CCC21C7E061500656CE1 /* zTV Series */ = {
 			isa = PBXGroup;
 			children = (
-				5901CCC61C7E061500656CE1 /* AppDelegate.h */,
-				5901CCC71C7E061500656CE1 /* AppDelegate.m */,
-				5901CCC91C7E061500656CE1 /* ViewController.h */,
-				5901CCCA1C7E061500656CE1 /* ViewController.m */,
-				5901CCCC1C7E061500656CE1 /* Main.storyboard */,
 				5901CCCF1C7E061500656CE1 /* Assets.xcassets */,
-				5901CCD11C7E061500656CE1 /* LaunchScreen.storyboard */,
-				5901CCD41C7E061500656CE1 /* Info.plist */,
+				5901CCEF1C7E2C3B00656CE1 /* Libraries */,
+				5901CCDA1C7E062300656CE1 /* App Delegate */,
+				5901CCDF1C7E065B00656CE1 /* Model */,
+				5901CCDE1C7E064700656CE1 /* Views */,
+				5901CCDB1C7E062A00656CE1 /* Controllers */,
 				5901CCC31C7E061500656CE1 /* Supporting Files */,
 			);
 			path = "zTV Series";
@@ -74,9 +115,158 @@
 		5901CCC31C7E061500656CE1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				597096AF1C7EC0AC0080B59B /* OTVSeries.db */,
+				5901CCE01C7E070D00656CE1 /* PrefixHeader.pch */,
+				5901CCD41C7E061500656CE1 /* Info.plist */,
 				5901CCC41C7E061500656CE1 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5901CCDA1C7E062300656CE1 /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				5901CCC61C7E061500656CE1 /* AppDelegate.h */,
+				5901CCC71C7E061500656CE1 /* AppDelegate.m */,
+			);
+			name = "App Delegate";
+			sourceTree = "<group>";
+		};
+		5901CCDB1C7E062A00656CE1 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				597096C01C7EDA570080B59B /* Add */,
+				597096B41C7ED8EB0080B59B /* My Shows */,
+				597096B51C7ED8EE0080B59B /* To Watch */,
+				597096B31C7ED8E70080B59B /* Favourites */,
+				5901CCDC1C7E063500656CE1 /* Login */,
+				5901CCDD1C7E063800656CE1 /* Tab Bar VCs */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		5901CCDC1C7E063500656CE1 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				5901CCE81C7E2B2E00656CE1 /* LoginTableViewController.h */,
+				5901CCE91C7E2B2E00656CE1 /* LoginTableViewController.m */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		5901CCDD1C7E063800656CE1 /* Tab Bar VCs */ = {
+			isa = PBXGroup;
+			children = (
+				5901CCF01C7E2CD700656CE1 /* Raw Query */,
+			);
+			name = "Tab Bar VCs";
+			sourceTree = "<group>";
+		};
+		5901CCDE1C7E064700656CE1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				597096AE1C7EBA540080B59B /* Launch */,
+				5901CCCC1C7E061500656CE1 /* Main.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		5901CCDF1C7E065B00656CE1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5901CCF71C7E337A00656CE1 /* DBManager */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		5901CCEB1C7E2C3900656CE1 /* LJCollectionViewTableLayout */ = {
+			isa = PBXGroup;
+			children = (
+				5901CCEC1C7E2C3900656CE1 /* LJCollectionViewTableLayout.h */,
+				5901CCED1C7E2C3900656CE1 /* LJCollectionViewTableLayout.m */,
+			);
+			name = LJCollectionViewTableLayout;
+			path = Libraries/LJCollectionViewTableLayout;
+			sourceTree = "<group>";
+		};
+		5901CCEF1C7E2C3B00656CE1 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				5901CCEB1C7E2C3900656CE1 /* LJCollectionViewTableLayout */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		5901CCF01C7E2CD700656CE1 /* Raw Query */ = {
+			isa = PBXGroup;
+			children = (
+				5901CCF41C7E2E0200656CE1 /* RawQuerySetupTableViewController.h */,
+				5901CCF51C7E2E0200656CE1 /* RawQuerySetupTableViewController.m */,
+				5901CCF11C7E2CEA00656CE1 /* RawQueryViewController.h */,
+				5901CCF21C7E2CEA00656CE1 /* RawQueryViewController.m */,
+			);
+			name = "Raw Query";
+			sourceTree = "<group>";
+		};
+		5901CCF71C7E337A00656CE1 /* DBManager */ = {
+			isa = PBXGroup;
+			children = (
+				5901CCF81C7E33A700656CE1 /* DBManager.h */,
+				5901CCF91C7E33A700656CE1 /* DBManager.m */,
+			);
+			name = DBManager;
+			sourceTree = "<group>";
+		};
+		597096AE1C7EBA540080B59B /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				5901CCD11C7E061500656CE1 /* LaunchScreen.storyboard */,
+			);
+			name = Launch;
+			sourceTree = "<group>";
+		};
+		597096B31C7ED8E70080B59B /* Favourites */ = {
+			isa = PBXGroup;
+			children = (
+				597096B61C7ED8FD0080B59B /* FavouritesTableViewController.h */,
+				597096B71C7ED8FD0080B59B /* FavouritesTableViewController.m */,
+			);
+			name = Favourites;
+			sourceTree = "<group>";
+		};
+		597096B41C7ED8EB0080B59B /* My Shows */ = {
+			isa = PBXGroup;
+			children = (
+				597096BA1C7ED9090080B59B /* MyShowsTableViewController.h */,
+				597096BB1C7ED9090080B59B /* MyShowsTableViewController.m */,
+			);
+			name = "My Shows";
+			sourceTree = "<group>";
+		};
+		597096B51C7ED8EE0080B59B /* To Watch */ = {
+			isa = PBXGroup;
+			children = (
+				597096BD1C7ED9140080B59B /* ToWatchTableViewController.h */,
+				597096BE1C7ED9140080B59B /* ToWatchTableViewController.m */,
+			);
+			name = "To Watch";
+			sourceTree = "<group>";
+		};
+		597096C01C7EDA570080B59B /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				597096C11C7EDA620080B59B /* AddShowTableViewController.h */,
+				597096C21C7EDA620080B59B /* AddShowTableViewController.m */,
+			);
+			name = Add;
+			sourceTree = "<group>";
+		};
+		C4DBDD6AD1A7C5778BE05048 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5A2576276E47C337B13DB973 /* libPods-zTV Series.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -86,9 +276,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5901CCD71C7E061500656CE1 /* Build configuration list for PBXNativeTarget "zTV Series" */;
 			buildPhases = (
+				6BC5684C8862326D8842F427 /* Check Pods Manifest.lock */,
 				5901CCBC1C7E061500656CE1 /* Sources */,
 				5901CCBD1C7E061500656CE1 /* Frameworks */,
 				5901CCBE1C7E061500656CE1 /* Resources */,
+				9ED6622D72234326CC58A037 /* Embed Pods Frameworks */,
+				5453373D193BB2086EC90CC6 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -136,6 +329,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				597096B01C7EC0AC0080B59B /* OTVSeries.db in Resources */,
 				5901CCD31C7E061500656CE1 /* LaunchScreen.storyboard in Resources */,
 				5901CCD01C7E061500656CE1 /* Assets.xcassets in Resources */,
 				5901CCCE1C7E061500656CE1 /* Main.storyboard in Resources */,
@@ -144,14 +338,70 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5453373D193BB2086EC90CC6 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-zTV Series/Pods-zTV Series-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6BC5684C8862326D8842F427 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9ED6622D72234326CC58A037 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-zTV Series/Pods-zTV Series-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5901CCBC1C7E061500656CE1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5901CCCB1C7E061500656CE1 /* ViewController.m in Sources */,
+				5901CCFA1C7E33A700656CE1 /* DBManager.m in Sources */,
+				597096B81C7ED8FD0080B59B /* FavouritesTableViewController.m in Sources */,
 				5901CCC81C7E061500656CE1 /* AppDelegate.m in Sources */,
+				5901CCEA1C7E2B2E00656CE1 /* LoginTableViewController.m in Sources */,
 				5901CCC51C7E061500656CE1 /* main.m in Sources */,
+				5901CCEE1C7E2C3900656CE1 /* LJCollectionViewTableLayout.m in Sources */,
+				597096BF1C7ED9140080B59B /* ToWatchTableViewController.m in Sources */,
+				5901CCF31C7E2CEA00656CE1 /* RawQueryViewController.m in Sources */,
+				597096BC1C7ED9090080B59B /* MyShowsTableViewController.m in Sources */,
+				597096C31C7EDA620080B59B /* AddShowTableViewController.m in Sources */,
+				5901CCF61C7E2E0200656CE1 /* RawQuerySetupTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,9 +511,13 @@
 		};
 		5901CCD81C7E061500656CE1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 69C30FE83D13ABC3971E672F /* Pods-zTV Series.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "zTV Series/PrefixHeader.pch";
 				INFOPLIST_FILE = "zTV Series/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avikantz.zTV-Series";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -272,9 +526,13 @@
 		};
 		5901CCD91C7E061500656CE1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1279295856E3C7C11C75B5A0 /* Pods-zTV Series.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "zTV Series/PrefixHeader.pch";
 				INFOPLIST_FILE = "zTV Series/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avikantz.zTV-Series";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -300,6 +558,7 @@
 				5901CCD91C7E061500656CE1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
