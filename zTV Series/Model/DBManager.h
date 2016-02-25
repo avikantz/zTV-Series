@@ -10,6 +10,8 @@
 
 @interface DBManager : NSObject
 
+@property (nonatomic, strong) NSString *uid;
+
 - (instancetype)initWithDatabasePath:(NSString *)path;
 
 - (void)dbManagerOpenDatabaseWithPath:(NSString *)path;
@@ -18,6 +20,8 @@
 - (BOOL)loginUserWithUsername:(NSString *)username andPassword:(NSString *)password error:(NSError *__autoreleasing *)error;
 
 - (id)dbExecuteQuery:(NSString *)query error:(NSError *__autoreleasing *)error;
+
+- (BOOL)dbExecuteUpdate:(NSString *)query error:(NSError *__autoreleasing *)error;
 
 + (DBManager *)sharedManager;
 

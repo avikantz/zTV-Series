@@ -12,6 +12,8 @@
 
 @property (nonatomic, strong) FMDatabase *database;
 
+@property (nonatomic, strong) NSString *username;
+
 @end
 
 @implementation DBManager
@@ -47,10 +49,49 @@
 
 - (BOOL)loginUserWithUsername:(NSString *)username andPassword:(NSString *)password error:(NSError *__autoreleasing *)error {
 	
-	NSString *queryString = [NSString stringWithFormat:@"INSERT INTO User (username, password) VALUES (%@, %@)", username, password];
+	NSArray *arr = [self dbExecuteQuery:[NSString stringWithFormat:@"SELECT * FROM User WHERE username = '%@'", username] error:nil];
+	
+	if (arr.count > 0) {
+		
+		NSLog(@"User already exists, logging in...");
+		
+		self.username = username;
+		
+		NSString *savedPassword;
+		
+		@try {
+			savedPassword = [NSString stringWithFormat:@"%@", [[arr firstObject] valueForKey:@"password"]];
+			self.uid = [NSString stringWithFormat:@"%@", [[arr firstObject] valueForKey:@"uid"]];
+		}
+		@catch (NSException *exception) {
+			NSLog(@"Exception in getting uids %@", exception.reason);
+		}
+		
+		if (![password isEqualToString:savedPassword]) {
+			*error = [NSError errorWithDomain:@"Password Mismatch!" code:401 userInfo:nil];
+			return NO;
+		}
+		
+		*error = nil;
+		return YES;
+	}
+	
+	NSString *queryString = [NSString stringWithFormat:@"INSERT INTO User (username, password) VALUES ('%@', '%@')", username, password];
 	
 	if (![self.database executeUpdate:queryString values:nil error:error])
 		return NO;
+	
+	NSLog(@"Signinu up in user: %@", username);
+	
+	self.username = username;
+	
+	@try {
+		NSArray *arr = [self dbExecuteQuery:[NSString stringWithFormat:@"SELECT uid FROM User WHERE username = '%@'", username] error:nil];
+		self.uid = [NSString stringWithFormat:@"%@", [[arr firstObject] valueForKey:@"uid"]];
+	}
+	@catch (NSException *exception) {
+		NSLog(@"Getting ID error: %@", exception.reason);
+	}
 	
 	return YES;
 }
@@ -82,6 +123,15 @@
 	}
 	
 	return results;
+}
+
+- (BOOL)dbExecuteUpdate:(NSString *)query error:(NSError *__autoreleasing *)error {
+	
+	if (![self.database executeUpdate:query values:nil error:error])
+		return NO;
+	
+	return YES;
+	
 }
 
 + (DBManager *)sharedManager {

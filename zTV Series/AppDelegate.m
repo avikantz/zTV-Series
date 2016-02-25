@@ -19,9 +19,36 @@
 	
 	// Override point for customization after application launch.
 	
-	[[DBManager sharedManager] dbManagerOpenDatabaseWithPath:[[NSBundle mainBundle] pathForResource:@"OTVSeries.db" ofType:nil]];
+	[[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Futura-Medium" size:17.f], NSForegroundColorAttributeName: [UIColor darkTextColor]}];
+	
+	[[UINavigationBar appearance] setBarTintColor:GLOBAL_BACK_COLOR];
+	
+	[[UITabBar appearance] setTintColor:[UIColor blackColor]];
+	[[UITabBar appearance] setBarTintColor:GLOBAL_BACK_COLOR];
+	
+	[[UITabBarItem appearance] setTitleTextAttributes: @{ NSFontAttributeName: [UIFont fontWithName:@"Futura-Medium" size:11.0f], NSForegroundColorAttributeName:[UIColor blackColor]} forState:UIControlStateSelected];
+	
+	[[UITabBarItem appearance] setTitleTextAttributes: @{ NSFontAttributeName: [UIFont fontWithName:@"Futura-Medium" size:11.0f], NSForegroundColorAttributeName:[UIColor lightGrayColor]} forState:UIControlStateNormal];
+	
+	NSString *bundledFilePath = [[NSBundle mainBundle] pathForResource:@"OTVSeries.db" ofType:nil];
+	NSString *filePath = [self documentsPathForFileName:@"OTVSeries.db"];
+	
+	if (![[NSFileManager defaultManager] fileExistsAtPath:[self documentsPathForFileName:@"OTVSeries.db"]]) {
+		NSLog(@"Copying bundled file to documents.");
+		[[NSFileManager defaultManager] copyItemAtPath:bundledFilePath toPath:filePath error:nil];
+	}
+	
+	[[DBManager sharedManager] dbManagerOpenDatabaseWithPath:filePath];
 	
 	return YES;
+}
+
+- (NSString *)documentsPathForFileName:(NSString *)name {
+	NSFileManager *manager = [NSFileManager defaultManager];
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+	NSString *documentsPath = [NSString stringWithFormat:@"%@", [paths lastObject]];
+	[manager createDirectoryAtPath:[NSString stringWithFormat:@"%@/OTVSeries/", [paths lastObject]] withIntermediateDirectories:YES attributes:nil error:nil];
+	return [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"OTVSeries/%@", name]];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

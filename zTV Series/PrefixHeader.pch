@@ -14,8 +14,15 @@
 
 #import <FMDB/FMDatabase.h>
 #import <SVProgressHUD/SVProgressHUD.h>
+#import <SDWebImage/SDWebImageDownloader.h>
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
+
+#import "UIImage+ImageEffects.h"
 
 #import "DBManager.h"
+
+#import "TVShow.h"
 
 #define SWidth [UIScreen mainScreen].bounds.size.width
 #define SHeight [UIScreen mainScreen].bounds.size.height

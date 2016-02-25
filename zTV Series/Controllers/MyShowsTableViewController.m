@@ -7,90 +7,160 @@
 //
 
 #import "MyShowsTableViewController.h"
+#import "ShowsTableViewCell.h"
 
-@interface MyShowsTableViewController ()
+@interface MyShowsTableViewController () <DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, UISearchResultsUpdating>
+
+@property (strong, nonatomic) UISearchController *searchController;
 
 @end
 
-@implementation MyShowsTableViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+@implementation MyShowsTableViewController {
+	NSMutableArray *shows;
+	NSMutableArray *fshows;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewDidLoad {
+	
+	[super viewDidLoad];
+	
+	shows = [NSMutableArray new];
+	fshows = [NSMutableArray new];
+	
+	[self setupSearchController];
+	
+	self.tableView.emptyDataSetSource = self;
+	self.tableView.emptyDataSetDelegate = self;
+	
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+	
+	[self fetchShows];
+	
+}
+
+- (void)fetchShows {
+	
+	SVHUD_SHOW;
+	
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		
+		@try {
+			
+			NSError *error;
+			
+			NSString *queryString = [NSString stringWithFormat:@"SELECT * FROM TVShow WHERE sid IN (SELECT sid FROM Following WHERE uid = %@)", [[DBManager sharedManager] uid]];
+			
+			NSArray *results = [[DBManager sharedManager] dbExecuteQuery:queryString error:&error];
+			
+//			NSLog(@"Results : %@", results);
+			
+			shows = [TVShow returnArrayFromJSONStructure:results];
+			fshows = [NSMutableArray arrayWithArray:shows];
+			
+			if (error) {
+				SVHUD_FAILURE(error.localizedDescription);
+				return;
+			}
+		}
+		@catch (NSException *exception) {
+			NSLog(@"Fetch error: %@", exception.reason);
+		}
+		@finally {
+			SVHUD_HIDE;
+			dispatch_async(dispatch_get_main_queue(), ^{
+				[self.tableView reloadData];
+			});
+		}
+		
+	});
+	
+}
+
+- (void)setupSearchController {
+	self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+	self.searchController.searchResultsUpdater = self;
+	self.searchController.searchBar.searchBarStyle = UISearchBarStyleMinimal;
+	self.searchController.searchBar.backgroundColor = GLOBAL_BACK_COLOR;
+	self.searchController.searchBar.tintColor = [UIColor blackColor];
+	self.searchController.dimsBackgroundDuringPresentation = NO;
+	self.definesPresentationContext = YES;
+	self.tableView.tableHeaderView = self.searchController.searchBar;
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 0;
+	return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+	return fshows.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
+	
+	ShowsTableViewCell *cell = (ShowsTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"showsCell" forIndexPath:indexPath];
+	
+	if (cell == nil)
+		cell = [[ShowsTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"showsCell"];
+	
+	TVShow *show = [fshows objectAtIndex:indexPath.row];
+	
+	[cell fillUsingShow:show];
+	
+	return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+#pragma mark - Search controller results updating | Filtering
+
+- (void)filterForSearchTitle:(NSString *)searchString {
+	fshows = [NSMutableArray arrayWithArray:shows];
+	[fshows filterUsingPredicate:[NSPredicate predicateWithFormat:@"name contains[cd] %@ OR genres contains [cd] %@", searchString, searchString]];
+	[self.tableView reloadData];
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+	UISearchBar *searchBar = searchController.searchBar;
+	if (searchBar.text.length > 0)
+		[self filterForSearchTitle:searchBar.text];
+	else {
+		fshows = [NSMutableArray arrayWithArray:shows];
+		[self.tableView reloadData];
+	}
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+#pragma mark - DZN Empty Data Set Source
+
+- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
+	return GLOBAL_BACK_COLOR;
 }
-*/
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+	
+	NSString *text = @"No rows loaded";
+	
+	NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Futura-Medium" size:18.f],
+								 NSForegroundColorAttributeName: [UIColor darkGrayColor]};
+	
+	return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
-*/
+
+#pragma mark - DZN Empty Data Set Source
+
+- (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView {
+	return (fshows.count == 0);
+}
 
 @end

@@ -7,9 +7,8 @@
 //
 
 #import "RawQueryViewController.h"
-#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 
-@interface RawQueryViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface RawQueryViewController () <UITableViewDataSource, UITableViewDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -24,10 +23,19 @@
     [super viewDidLoad];
 	
 	results = [NSMutableArray new];
+
+	SVHUD_SHOW;
+	
+	self.tableView.rowHeight = UITableViewAutomaticDimension;
+	
+	self.tableView.emptyDataSetDelegate = self;
+	self.tableView.emptyDataSetSource = self;
+	
+}
+
+- (void)viewDidAppear:(BOOL)animated {
 	
 	if (self.queryString) {
-		
-		SVHUD_SHOW;
 		
 		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 			
@@ -56,8 +64,6 @@
 		});
 		
 	}
-	
-	self.tableView.rowHeight = UITableViewAutomaticDimension;
 	
 }
 
@@ -99,6 +105,39 @@
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	return 44.f;
+}
+
+#pragma mark - DZN Empty Data Set Source
+
+- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
+	return GLOBAL_BACK_COLOR;
+}
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+	
+	NSString *text = @"No rows loaded";
+	
+	NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Futura-Medium" size:18.f],
+								 NSForegroundColorAttributeName: [UIColor darkGrayColor]};
+	
+	return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
+	
+	NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Futura-Medium" size:22.f]};
+	
+	return [[NSAttributedString alloc] initWithString:@"Back" attributes:attributes];
+}
+
+#pragma mark - DZN Empty Data Set Source
+
+- (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView {
+	return (results.count == 0);
+}
+
+- (void)emptyDataSetDidTapButton:(UIScrollView *)scrollView {
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
