@@ -23,6 +23,10 @@
 	
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+	[self.commentTextView becomeFirstResponder];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

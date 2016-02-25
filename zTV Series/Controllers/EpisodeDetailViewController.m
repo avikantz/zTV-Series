@@ -47,6 +47,8 @@
 		self.backgroundImageView.image = [image applyDarkEffect];
 	}];
 	
+	self.backgroundImageView.clipsToBounds = YES;
+	
 	comments = [NSMutableArray new];
 	
 	self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -117,7 +119,37 @@
 	
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
 		
+		NSError *error;
 		
+		NSString *favQueryString = [NSString stringWithFormat:@"SELECT * FROM FavouriteE WHERE uid = %li AND sid = %li AND sno = %li AND eno = %li", [DBManager sharedManager].user.uid, self.show.sid, self.episode.sno, self.episode.eno];
+		
+		NSArray *favs = [[DBManager sharedManager] dbExecuteQuery:favQueryString error:&error];
+		
+		if (favs.count > 0)
+			isFavourite = YES;
+		
+		NSString *watQueryString = [NSString stringWithFormat:@"SELECT * FROM Watched WHERE uid = %li AND sid = %li AND sno = %li AND eno = %li", [DBManager sharedManager].user.uid, self.show.sid, self.episode.sno, self.episode.eno];
+		
+		NSArray *wata = [[DBManager sharedManager] dbExecuteQuery:watQueryString error:&error];
+		
+		if (wata.count > 0)
+			isWatched = YES;
+		
+		dispatch_async(dispatch_get_main_queue(), ^{
+			
+			if (isFavourite)
+				[self.favButton setImage:[UIImage imageNamed:@"30StarFilled"] forState:UIControlStateNormal];
+			else
+				[self.favButton setImage:[UIImage imageNamed:@"30StarEmpty"] forState:UIControlStateNormal];
+			
+			if (isWatched)
+				[self.seenButton setImage:[UIImage imageNamed:@"30EyeFilled"] forState:UIControlStateNormal];
+			else
+				[self.seenButton setImage:[UIImage imageNamed:@"30EyeEmpty"] forState:UIControlStateNormal];
+			
+			[self.view layoutIfNeeded];
+			
+		});
 		
 	});
 	
@@ -125,9 +157,39 @@
 
 - (IBAction)seenAction:(id)sender {
 	
+	NSString *queryString;
+	
+	if (isWatched)
+		queryString = [NSString stringWithFormat:@"DELETE FROM Watched WHERE uid = %li AND sid = %li AND sno = %li AND eno = %li", [DBManager sharedManager].user.uid, self.show.sid, self.episode.sno, self.episode.eno];
+	else
+		queryString = [NSString stringWithFormat:@"INSERT INTO Watched (uid, sid, sno, eno) VALUES (%li, %li, %li, %li)", [DBManager sharedManager].user.uid, self.show.sid, self.episode.sno, self.episode.eno];
+	
+	NSError *error;
+	
+	if (![[DBManager sharedManager] dbExecuteUpdate:queryString error:&error]) {
+		SVHUD_FAILURE(error.localizedDescription);
+	}
+	
+	[self checkFavouriteAndWatched];
+	
 }
 
 - (IBAction)favouriteAction:(id)sender {
+	
+	NSString *queryString;
+	
+	if (isFavourite)
+		queryString = [NSString stringWithFormat:@"DELETE FROM FavouriteE WHERE uid = %li AND sid = %li AND sno = %li AND eno = %li", [DBManager sharedManager].user.uid, self.show.sid, self.episode.sno, self.episode.eno];
+	else
+		queryString = [NSString stringWithFormat:@"INSERT INTO FavouriteE (uid, sid, sno, eno) VALUES (%li, %li, %li, %li)", [DBManager sharedManager].user.uid, self.show.sid, self.episode.sno, self.episode.eno];
+	
+	NSError *error;
+	
+	if (![[DBManager sharedManager] dbExecuteUpdate:queryString error:&error]) {
+		SVHUD_FAILURE(error.localizedDescription);
+	}
+	
+	[self checkFavouriteAndWatched];
 	
 }
 

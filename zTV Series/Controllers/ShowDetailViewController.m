@@ -26,6 +26,7 @@
 
 @implementation ShowDetailViewController {
 	NSMutableArray *episodes;
+	NSMutableArray *orderedEpisodes;
 }
 
 - (void)viewDidLoad {
@@ -46,7 +47,10 @@
 		self.backgroundImageView.image = [image applyDarkEffect];
 	}];
 	
+	self.backgroundImageView.clipsToBounds = YES;
+	
 	episodes = [NSMutableArray new];
+	orderedEpisodes = [NSMutableArray new];
 	
 	self.tableView.tableFooterView = [UIView new];
 	
@@ -90,6 +94,25 @@
 			
 			episodes = [Episode returnArrayFromJSONStructure:results];
 			
+			orderedEpisodes = [NSMutableArray new];
+			
+			NSInteger fsno = [(Episode *)[episodes firstObject] sno];
+			
+			NSMutableArray *epsSec = [NSMutableArray new];
+			
+			for (NSInteger i = 0; i < episodes.count; ++i) {
+				Episode *episode = [episodes objectAtIndex:i];
+				if (episode.sno == fsno)
+					[epsSec addObject:episode];
+				else {
+					[orderedEpisodes addObject:epsSec];
+					epsSec = [NSMutableArray arrayWithObject:episode];
+					fsno = episode.sno;
+				}
+			}
+			
+			[orderedEpisodes addObject:epsSec];
+			
 			if (error) {
 				SVHUD_FAILURE(error.localizedDescription);
 				return;
@@ -111,11 +134,11 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 1;
+	return orderedEpisodes.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return episodes.count;
+	return [[orderedEpisodes objectAtIndex:section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -125,13 +148,17 @@
 	if (!cell)
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"episodesCell"];
 	
-	Episode *episode = [episodes objectAtIndex:indexPath.row];
+	Episode *episode = [[orderedEpisodes objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
 	
 	cell.textLabel.text = [NSString stringWithFormat:@"%lix%.2li", episode.sno, episode.eno];
 	
 	cell.detailTextLabel.text = episode.name;
 	
 	return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	return [NSString stringWithFormat:@"Season %li", section + 1];
 }
 
 #pragma mark - Table view delegate
@@ -149,7 +176,7 @@
 		
 		NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
 		
-		Episode *episode = [episodes objectAtIndex:indexPath.row];
+		Episode *episode = [[orderedEpisodes objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
 		
 		EpisodeDetailViewController *edvc = [segue destinationViewController];
 		

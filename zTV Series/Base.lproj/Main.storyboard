@@ -23,7 +23,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D1l-e7-C7v" customClass="KaedeTextField" customModule="zTV_Series" customModuleProvider="target">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="D1l-e7-C7v" customClass="KaedeTextField" customModule="zTV_Series" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="0.0" width="355" height="59.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -35,7 +35,7 @@
                                                             <real key="value" value="0.90000000000000002"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="foregroundColor">
-                                                            <color key="value" red="0.80000000000000004" green="1" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="value" red="1" green="1" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
@@ -59,7 +59,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rio-23-1hJ" customClass="KaedeTextField" customModule="zTV_Series" customModuleProvider="target">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="rio-23-1hJ" customClass="KaedeTextField" customModule="zTV_Series" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="0.0" width="355" height="59.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -68,7 +68,7 @@
                                                             <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="foregroundColor">
-                                                            <color key="value" red="0.80000000000000004" green="1" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="value" red="1" green="1" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
                                                             <real key="value" value="0.90000000000000002"/>
@@ -467,7 +467,14 @@ ORDER BY eno;</string>
                             <outlet property="delegate" destination="pZq-2v-gpf" id="7Tk-RB-PSP"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Raw Query" id="Yv7-QF-Mll"/>
+                    <navigationItem key="navigationItem" title="Raw Query" id="Yv7-QF-Mll">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" style="done" id="F3N-pp-c5J">
+                            <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="logoutAction:" destination="pZq-2v-gpf" id="eb7-rf-ld1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="queryTextView" destination="e2U-6B-PZe" id="EfO-Fu-ruH"/>
@@ -883,6 +890,7 @@ ORDER BY eno;</string>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xcg-Sa-6U4">
                                         <rect key="frame" x="3" y="3" width="36" height="36"/>
                                         <state key="normal" image="30StarEmpty"/>
+                                        <state key="highlighted" image="30StarFilled"/>
                                         <connections>
                                             <action selector="favouriteAction:" destination="SZO-rz-XnE" eventType="touchUpInside" id="Bn8-if-K8W"/>
                                         </connections>
@@ -909,6 +917,7 @@ ORDER BY eno;</string>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sdn-q3-yHC">
                                         <rect key="frame" x="3" y="3" width="36" height="36"/>
                                         <state key="normal" image="30EyeEmpty"/>
+                                        <state key="highlighted" image="30EyeFilled"/>
                                         <connections>
                                             <action selector="seenAction:" destination="SZO-rz-XnE" eventType="touchUpInside" id="teA-Kg-7q0"/>
                                         </connections>
@@ -1021,7 +1030,7 @@ ORDER BY eno;</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NBb-rp-rq1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3016.5" y="-1050.5"/>
+            <point key="canvasLocation" x="2974.5" y="-1050.5"/>
         </scene>
         <!--Add Comment-->
         <scene sceneID="epH-5h-pxZ">
@@ -1115,7 +1124,7 @@ ORDER BY eno;</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4se-y2-5LB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4041.5" y="-1050.5"/>
+            <point key="canvasLocation" x="3916.5" y="-1050.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8rb-xn-MCJ">
@@ -1332,13 +1341,15 @@ ORDER BY eno;</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7O9-ps-Hkt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3552.5" y="-1050.5"/>
+            <point key="canvasLocation" x="3456.5" y="-1050.5"/>
         </scene>
     </scenes>
     <resources>
         <image name="30EyeEmpty" width="30" height="30"/>
+        <image name="30EyeFilled" width="30" height="30"/>
         <image name="30RawQuery" width="30" height="30"/>
         <image name="30StarEmpty" width="30" height="30"/>
+        <image name="30StarFilled" width="30" height="30"/>
         <image name="30TV" width="30" height="30"/>
         <image name="30WatchList" width="30" height="30"/>
         <image name="30add" width="30" height="30"/>

@@ -40,6 +40,10 @@
 	
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+	[self.searchController.searchBar becomeFirstResponder];
+}
+
 - (void)fetchShows {
 	
 	SVHUD_SHOW;
@@ -138,6 +142,8 @@
 	}
 	
 	[self fetchShows];
+	
+	[self updateSearchResultsForSearchController:self.searchController];
 	
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	

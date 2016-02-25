@@ -23,15 +23,15 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avikant Saini" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fvg-dV-nbw">
-                                <rect key="frame" x="241" y="554" width="118.5" height="26"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
-                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="247" y="568.5" width="106.5" height="23.5"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.98823529409999999" green="0.97647058819999999" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="Fvg-dV-nbw" secondAttribute="bottom" constant="20" id="479-ms-dhJ"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="Fvg-dV-nbw" secondAttribute="bottom" constant="8" id="479-ms-dhJ"/>
                             <constraint firstItem="ssB-HT-bdn" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="6w5-s8-4h7"/>
                             <constraint firstItem="Fvg-dV-nbw" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="XCq-c8-8NR"/>
                             <constraint firstItem="ssB-HT-bdn" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="sC2-4x-S0O"/>

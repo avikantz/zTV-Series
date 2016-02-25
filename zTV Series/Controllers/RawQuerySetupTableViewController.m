@@ -74,4 +74,15 @@
 	
 }
 
+- (IBAction)logoutAction:(id)sender {
+	
+	UINavigationController *loginNav = [self.storyboard instantiateInitialViewController];
+	
+	[self.tabBarController presentViewController:loginNav animated:YES completion:^{
+		self.view.window.rootViewController = loginNav;
+	}];
+	
+}
+
+
 @end
