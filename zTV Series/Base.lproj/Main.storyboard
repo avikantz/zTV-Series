@@ -210,7 +210,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x1K-9q-ZaU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2473.5" y="1231.5"/>
+            <point key="canvasLocation" x="2520.5" y="1231.5"/>
         </scene>
         <!--To Watch-->
         <scene sceneID="WQV-fl-FwI">
@@ -243,6 +243,12 @@
                                             <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="22"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="drawsUnderline" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                                    <real key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bb2-ft-2lO">
                                             <rect key="frame" x="67" y="8" width="1" height="63.5"/>
@@ -260,7 +266,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1x01 - Winter is Coming" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YGO-nv-M5S">
                                             <rect key="frame" x="76" y="47" width="253" height="20"/>
                                             <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="14"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2v5-kA-hh7">
@@ -307,6 +313,7 @@
                                     <outlet property="epsNameLabel" destination="YGO-nv-M5S" id="3dy-DE-Rem"/>
                                     <outlet property="seenButton" destination="2v5-kA-hh7" id="Sdw-aX-xlP"/>
                                     <outlet property="showNameLabe" destination="gui-kc-gVz" id="RjR-tG-dCS"/>
+                                    <segue destination="tjn-dp-bZX" kind="show" identifier="ToWatchShow" id="xDN-Ts-aL5"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -321,6 +328,87 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MjU-qB-EB5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2024.5" y="-294.5"/>
+        </scene>
+        <!--To Watch Detail Table View Controller-->
+        <scene sceneID="LfX-2G-uys">
+            <objects>
+                <tableViewController id="tjn-dp-bZX" customClass="ToWatchDetailTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="3tM-sk-d2C">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.98823529409999999" green="0.97647058819999999" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="toWatchCell" rowHeight="60" id="hhm-XO-94C" customClass="ToWatchTableViewCell">
+                                <rect key="frame" x="0.0" y="92" width="375" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hhm-XO-94C" id="fDF-aP-05a">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7lU-9u-qJt">
+                                            <rect key="frame" x="12" y="16.5" width="30" height="26"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="30" id="7WG-tC-zzN"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fUM-X6-YNf">
+                                            <rect key="frame" x="329" y="15" width="30" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="30" id="sII-MQ-t0l"/>
+                                                <constraint firstAttribute="height" constant="30" id="yIZ-IV-5cA"/>
+                                            </constraints>
+                                            <state key="normal" image="30EyeEmpty"/>
+                                            <state key="highlighted" image="30EyeFilled"/>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Winter is Coming" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtP-S7-Vvz">
+                                            <rect key="frame" x="58" y="8" width="259" height="24"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="April 11 2011" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iE1-dA-i0K">
+                                            <rect key="frame" x="58" y="33.5" width="259" height="20"/>
+                                            <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="14"/>
+                                            <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="leadingMargin" secondItem="7lU-9u-qJt" secondAttribute="leading" constant="-4" id="3MS-vb-z9A"/>
+                                        <constraint firstItem="vtP-S7-Vvz" firstAttribute="top" secondItem="fDF-aP-05a" secondAttribute="topMargin" id="5sH-lf-7xF"/>
+                                        <constraint firstItem="7lU-9u-qJt" firstAttribute="centerY" secondItem="fDF-aP-05a" secondAttribute="centerY" id="8Md-qx-sJa"/>
+                                        <constraint firstItem="vtP-S7-Vvz" firstAttribute="leading" secondItem="7lU-9u-qJt" secondAttribute="trailing" constant="16" id="9VN-m6-RTw"/>
+                                        <constraint firstItem="fUM-X6-YNf" firstAttribute="leading" secondItem="vtP-S7-Vvz" secondAttribute="trailing" constant="12" id="JoG-pb-X1w"/>
+                                        <constraint firstItem="fUM-X6-YNf" firstAttribute="centerY" secondItem="fDF-aP-05a" secondAttribute="centerY" id="VYM-j4-Jif"/>
+                                        <constraint firstItem="fUM-X6-YNf" firstAttribute="leading" secondItem="iE1-dA-i0K" secondAttribute="trailing" constant="12" id="amz-Ra-DjU"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="iE1-dA-i0K" secondAttribute="bottom" constant="-2" id="hX5-tq-Ekt"/>
+                                        <constraint firstItem="iE1-dA-i0K" firstAttribute="leading" secondItem="7lU-9u-qJt" secondAttribute="trailing" constant="16" id="wdL-l7-I0W"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="fUM-X6-YNf" secondAttribute="trailing" constant="8" id="ycS-Uf-g7t"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="epsCountLabek" destination="7lU-9u-qJt" id="rM8-R8-wHU"/>
+                                    <outlet property="epsNameLabel" destination="iE1-dA-i0K" id="TZ7-6i-4tM"/>
+                                    <outlet property="seenButton" destination="fUM-X6-YNf" id="cHw-qN-2G5"/>
+                                    <outlet property="showNameLabe" destination="vtP-S7-Vvz" id="NXa-93-Bn2"/>
+                                    <segue destination="SZO-rz-XnE" kind="show" identifier="EpisodeDetailSegueToWatch" id="oKj-EE-XFc"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="tjn-dp-bZX" id="9CX-sA-ywC"/>
+                            <outlet property="delegate" destination="tjn-dp-bZX" id="Mzt-fm-fiU"/>
+                        </connections>
+                    </tableView>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bVE-WK-09m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2520.5" y="-294.5"/>
         </scene>
         <!--Raw Query-->
         <scene sceneID="Fmc-J6-uxi">
@@ -1424,5 +1512,8 @@ ORDER BY eno;</string>
         <image name="30WatchList" width="30" height="30"/>
         <image name="30add" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="oKj-EE-XFc"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
 </document>

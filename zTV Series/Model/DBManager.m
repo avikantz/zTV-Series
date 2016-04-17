@@ -7,10 +7,12 @@
 //
 
 #import "DBManager.h"
+#import <FMDB/FMDatabaseQueue.h>
 
 @interface DBManager ()
 
 @property (nonatomic, strong) FMDatabase *database;
+@property (nonatomic, strong) FMDatabaseQueue *dbqueue;
 
 @end
 
@@ -22,6 +24,7 @@
 	
 	if (self) {
 		self.database = [FMDatabase databaseWithPath:path];
+		self.dbqueue = [FMDatabaseQueue databaseQueueWithPath:path];
 	}
 	
 	return self;
@@ -30,6 +33,7 @@
 - (void)dbManagerOpenDatabaseWithPath:(NSString *)path {
 	
 	self.database = [FMDatabase databaseWithPath:path];
+	self.dbqueue = [FMDatabaseQueue databaseQueueWithPath:path];
 	
 	if (![self.database open]) {
 		NSLog(@"Database Opening Error");
@@ -42,6 +46,7 @@
 	if (![self.database close]) {
 		NSLog(@"Database Closing Error");
 	}
+	[self.dbqueue close];
 	
 }
 
@@ -95,39 +100,49 @@
 
 - (id)dbExecuteQuery:(NSString *)query error:(NSError *__autoreleasing *)error {
 	
-	FMResultSet *fmrset = [self.database executeQuery:query values:nil error:error];
-	
 	NSMutableArray *columnNames = [NSMutableArray new];
 	NSMutableArray *results = [NSMutableArray new];
 	
-	for (int i = 0; i < [fmrset columnCount]; ++i) {
+	[self.dbqueue inDatabase:^(FMDatabase *db) {
 		
-		NSString *cname = [fmrset columnNameForIndex:i];
+		FMResultSet *fmrset = [db executeQuery:query values:nil error:error];
 		
-		[columnNames addObject:[NSString stringWithFormat:@"%@", cname]];
+		for (int i = 0; i < [fmrset columnCount]; ++i) {
+			
+			NSString *cname = [fmrset columnNameForIndex:i];
+			
+			[columnNames addObject:[NSString stringWithFormat:@"%@", cname]];
+			
+		}
 		
-	}
-	
-	while ([fmrset next]) {
+		while ([fmrset next]) {
+			
+			NSMutableDictionary *dict = [NSMutableDictionary new];
+			
+			for (NSString *cname in columnNames)
+				[dict setObject:[fmrset objectForColumnName:cname] forKey:cname];
+			
+			[results addObject:dict];
+			
+		}
 		
-		NSMutableDictionary *dict = [NSMutableDictionary new];
-		
-		for (NSString *cname in columnNames)
-			[dict setObject:[fmrset objectForColumnName:cname] forKey:cname];
-		
-		[results addObject:dict];
-		
-	}
+	}];
 	
 	return results;
 }
 
 - (BOOL)dbExecuteUpdate:(NSString *)query error:(NSError *__autoreleasing *)error {
+
+	__block BOOL success = YES;
 	
-	if (![self.database executeUpdate:query values:nil error:error])
-		return NO;
+	[self.dbqueue inDatabase:^(FMDatabase *db) {
+		
+		if (![db executeUpdate:query values:nil error:error])
+			success = NO;
+		
+	}];
 	
-	return YES;
+	return success;
 	
 }
 

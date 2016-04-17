@@ -124,16 +124,12 @@
 		NSString *favQueryString = [NSString stringWithFormat:@"SELECT * FROM FavouriteE WHERE uid = %li AND sid = %li AND sno = %li AND eno = %li", [DBManager sharedManager].user.uid, self.show.sid, self.episode.sno, self.episode.eno];
 		
 		NSArray *favs = [[DBManager sharedManager] dbExecuteQuery:favQueryString error:&error];
-		
-		if (favs.count > 0)
-			isFavourite = YES;
+		isFavourite = (favs.count > 0);
 		
 		NSString *watQueryString = [NSString stringWithFormat:@"SELECT * FROM Watched WHERE uid = %li AND sid = %li AND sno = %li AND eno = %li", [DBManager sharedManager].user.uid, self.show.sid, self.episode.sno, self.episode.eno];
 		
 		NSArray *wata = [[DBManager sharedManager] dbExecuteQuery:watQueryString error:&error];
-		
-		if (wata.count > 0)
-			isWatched = YES;
+		isWatched = (wata.count > 0);
 		
 		dispatch_async(dispatch_get_main_queue(), ^{
 			

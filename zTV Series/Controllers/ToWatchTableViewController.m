@@ -7,6 +7,7 @@
 //
 
 #import "ToWatchTableViewController.h"
+#import "ToWatchDetailTableViewController.h"
 #import "ToWatchTableViewCell.h"
 
 @interface ToWatchTableViewController ()
@@ -18,16 +19,15 @@
 }
 
 - (void)viewDidLoad {
-	
     [super viewDidLoad];
-
 	shows = [NSMutableArray new];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
 	[self fetchShows];
-	
 }
 
 - (void)fetchShows {
-	SVHUD_SHOW;
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		@try {
 			NSError *error;
@@ -44,7 +44,6 @@
 		}
 		@finally {
 			dispatch_async(dispatch_get_main_queue(), ^{
-				SVHUD_HIDE;
 				[self.tableView reloadData];
 			});
 		}
@@ -71,6 +70,8 @@
 	cell.showNameLabe.text = show.name;
 	[self refershEpisodeInformationForCell:cell atIndexPath:indexPath withShow:show];
 	
+	[cell.seenButton addTarget:self action:@selector(didPressSeenButton:) forControlEvents:UIControlEventTouchUpInside];
+	
     return cell;
 }
 
@@ -78,9 +79,8 @@
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		@try {
 			NSError *error;
-			NSString *queryString = [NSString stringWithFormat:@"SELECT * FROM Episode WHERE sid = %li AND ((sid, sno, eno) IN (SELECT sid, sno, eno FROM Watched WHERE uid = %li AND sid = %li))", show.sid, [DBManager sharedManager].user.uid, show.sid];
+			NSString *queryString = [NSString stringWithFormat:@"SELECT sid, sno, eno, name, airdate FROM Episode WHERE sid = %li EXCEPT SELECT sid, sno, eno, name, airdate FROM (Episode NATURAL JOIN Watched) WHERE sid = %li AND uid = %li", show.sid, show.sid, [DBManager sharedManager].user.uid];
 			NSArray *results = [[DBManager sharedManager] dbExecuteQuery:queryString error:&error];
-			NSLog(@"Results = %@", results);
 			show.episodes = [Episode returnArrayFromJSONStructure:results];
 		}
 		@catch (NSException *exception) {
@@ -88,9 +88,15 @@
 		}
 		@finally {
 			dispatch_async(dispatch_get_main_queue(), ^{
-				Episode *eps = show.episodes.firstObject;
-				cell.epsNameLabel.text = [NSString stringWithFormat:@"%lix%.2li - %@", eps.sno, eps.sno, eps.name];
-				cell.epsCountLabek.text = [NSString stringWithFormat:@"%li", show.episodes.count];
+				if (show.episodes.count == 0) {
+					cell.epsNameLabel.text = @"All Watched!";
+					cell.epsCountLabek.text = @"¿";
+				}
+				else {
+					Episode *eps = show.episodes.firstObject;
+					cell.epsNameLabel.text = [NSString stringWithFormat:@"%lix%.2li - %@", eps.sno, eps.eno, eps.name];
+					cell.epsCountLabek.text = [NSString stringWithFormat:@"%li", show.episodes.count];
+				}
 			});
 		}
 	});
@@ -100,6 +106,36 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)didPressSeenButton:(id)sender {
+	CGPoint pointOfOrigin = [sender convertPoint:CGPointZero toView:self.tableView];
+	NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:pointOfOrigin];
+	ToWatchTableViewCell *cell = (ToWatchTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+	
+	TVShow *show = [shows objectAtIndex:indexPath.row];
+	Episode *episode = show.episodes.firstObject;
+	
+	NSString *queryString = [NSString stringWithFormat:@"INSERT INTO Watched (uid, sid, sno, eno) VALUES (%li, %li, %li, %li)", [DBManager sharedManager].user.uid, show.sid, episode.sno, episode.eno];
+	NSError *error;
+	[[DBManager sharedManager] dbExecuteUpdate:queryString error:&error];
+	
+	[self refershEpisodeInformationForCell:cell atIndexPath:indexPath withShow:show];
+}
+
+- (void)tableViewCell:(ToWatchTableViewCell *)cell pressSeenButtonAtIndexPath:(NSIndexPath *)indexPath forShow:(TVShow *)show {
+	
+}
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	if ([segue.identifier isEqualToString:@"ToWatchShow"]) {
+		ToWatchDetailTableViewController *dvc = [segue destinationViewController];
+		NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+		TVShow *show = [shows objectAtIndex:indexPath.row];
+		dvc.show = show;
+	}
 }
 
 @end

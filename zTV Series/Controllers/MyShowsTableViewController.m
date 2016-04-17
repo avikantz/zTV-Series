@@ -35,15 +35,11 @@
 	
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-	
+- (void)viewWillAppear:(BOOL)animated {
 	[self fetchShows];
-	
 }
 
 - (void)fetchShowsOrderedBy:(NSString *)ordering {
-	
-	SVHUD_SHOW;
 	
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		

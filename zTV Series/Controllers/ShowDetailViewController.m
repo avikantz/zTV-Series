@@ -58,6 +58,9 @@
 	UIVibrancyEffect *vibrancyEffect = [UIVibrancyEffect effectForBlurEffect:blurEffect];
 	self.tableView.separatorEffect = vibrancyEffect;
 	
+	UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+	self.navigationItem.backBarButtonItem = backButton;
+	
 }
 
 - (void)viewWillAppear:(BOOL)animated {

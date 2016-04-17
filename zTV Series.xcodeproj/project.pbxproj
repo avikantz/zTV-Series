@@ -17,6 +17,7 @@
 		5901CCF61C7E2E0200656CE1 /* RawQuerySetupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5901CCF51C7E2E0200656CE1 /* RawQuerySetupTableViewController.m */; };
 		5901CCFA1C7E33A700656CE1 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5901CCF91C7E33A700656CE1 /* DBManager.m */; };
 		5959BC4A1CC38F5600031EDA /* ToWatchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5959BC491CC38F5600031EDA /* ToWatchTableViewCell.m */; };
+		5959BC4D1CC3B7D900031EDA /* ToWatchDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5959BC4C1CC3B7D900031EDA /* ToWatchDetailTableViewController.m */; };
 		597096B01C7EC0AC0080B59B /* OTVSeries.db in Resources */ = {isa = PBXBuildFile; fileRef = 597096AF1C7EC0AC0080B59B /* OTVSeries.db */; };
 		597096B81C7ED8FD0080B59B /* FavouritesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 597096B71C7ED8FD0080B59B /* FavouritesTableViewController.m */; };
 		597096BC1C7ED9090080B59B /* MyShowsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 597096BB1C7ED9090080B59B /* MyShowsTableViewController.m */; };
@@ -64,6 +65,8 @@
 		5901CCF91C7E33A700656CE1 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBManager.m; path = Model/DBManager.m; sourceTree = "<group>"; };
 		5959BC481CC38F5600031EDA /* ToWatchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ToWatchTableViewCell.h; path = Cells/ToWatchTableViewCell.h; sourceTree = "<group>"; };
 		5959BC491CC38F5600031EDA /* ToWatchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ToWatchTableViewCell.m; path = Cells/ToWatchTableViewCell.m; sourceTree = "<group>"; };
+		5959BC4B1CC3B7D900031EDA /* ToWatchDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ToWatchDetailTableViewController.h; path = Controllers/ToWatchDetailTableViewController.h; sourceTree = "<group>"; };
+		5959BC4C1CC3B7D900031EDA /* ToWatchDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ToWatchDetailTableViewController.m; path = Controllers/ToWatchDetailTableViewController.m; sourceTree = "<group>"; };
 		597096AF1C7EC0AC0080B59B /* OTVSeries.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = OTVSeries.db; sourceTree = "<group>"; };
 		597096B61C7ED8FD0080B59B /* FavouritesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavouritesTableViewController.h; path = Controllers/FavouritesTableViewController.h; sourceTree = "<group>"; };
 		597096B71C7ED8FD0080B59B /* FavouritesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavouritesTableViewController.m; path = Controllers/FavouritesTableViewController.m; sourceTree = "<group>"; };
@@ -298,6 +301,8 @@
 			children = (
 				597096BD1C7ED9140080B59B /* ToWatchTableViewController.h */,
 				597096BE1C7ED9140080B59B /* ToWatchTableViewController.m */,
+				5959BC4B1CC3B7D900031EDA /* ToWatchDetailTableViewController.h */,
+				5959BC4C1CC3B7D900031EDA /* ToWatchDetailTableViewController.m */,
 			);
 			name = "To Watch";
 			sourceTree = "<group>";
@@ -587,6 +592,7 @@
 				598F5FF91C7F32E900BD59A8 /* EpisodeDetailViewController.m in Sources */,
 				598F5FE91C7EF17C00BD59A8 /* RoundedLabel.m in Sources */,
 				598F5FD81C7EE70700BD59A8 /* TVShow.m in Sources */,
+				5959BC4D1CC3B7D900031EDA /* ToWatchDetailTableViewController.m in Sources */,
 				5901CCF61C7E2E0200656CE1 /* RawQuerySetupTableViewController.m in Sources */,
 				598F5FF11C7F255200BD59A8 /* DoubleUnderlinedLabel.m in Sources */,
 			);
