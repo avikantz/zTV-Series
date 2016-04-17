@@ -104,7 +104,7 @@
 		
 		NSString *cname = [fmrset columnNameForIndex:i];
 		
-		[columnNames addObject:cname];
+		[columnNames addObject:[NSString stringWithFormat:@"%@", cname]];
 		
 	}
 	

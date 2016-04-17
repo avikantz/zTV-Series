@@ -30,6 +30,8 @@
 
 @property (nonatomic, strong) NSURL *imageURL;
 
+@property (nonatomic, strong) NSArray *episodes;
+
 - (instancetype)initWithDict:(id)dict;
 
 + (NSMutableArray <TVShow *> *)returnArrayFromJSONStructure:(id)json;

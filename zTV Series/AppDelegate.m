@@ -48,11 +48,9 @@
 }
 
 - (NSString *)documentsPathForFileName:(NSString *)name {
-	NSFileManager *manager = [NSFileManager defaultManager];
-	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *documentsPath = [NSString stringWithFormat:@"%@", [paths lastObject]];
-	[manager createDirectoryAtPath:[NSString stringWithFormat:@"%@/OTVSeries/", [paths lastObject]] withIntermediateDirectories:YES attributes:nil error:nil];
-	return [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"OTVSeries/%@", name]];
+	return [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@", name]];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
