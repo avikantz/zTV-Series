@@ -7,90 +7,150 @@
 //
 
 #import "FavouritesTableViewController.h"
+#import "FavouriteTableViewCell.h"
+#import "EpisodeDetailViewController.h"
 
 @interface FavouritesTableViewController ()
 
 @end
 
-@implementation FavouritesTableViewController
+@implementation FavouritesTableViewController {
+	NSMutableArray *shows;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+	self.navigationItem.backBarButtonItem = backButton;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated {
+	[self fetchShows];
+}
+
+- (void)fetchShows {
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		@try {
+			NSError *error;
+			NSString *queryString = [NSString stringWithFormat:@"SELECT * FROM TVShow WHERE sid IN (SELECT sid FROM Following WHERE uid = %li) ORDER BY name", [DBManager sharedManager].user.uid];
+			NSArray *results = [[DBManager sharedManager] dbExecuteQuery:queryString error:&error];
+			shows = [TVShow returnArrayFromJSONStructure:results];
+			if (error) {
+				SVHUD_FAILURE(error.localizedDescription);
+				return;
+			}
+		}
+		@catch (NSException *exception) {
+			NSLog(@"Fetch error: %@", exception.reason);
+		}
+		@finally {
+			dispatch_async(dispatch_get_main_queue(), ^{
+				[self.tableView reloadData];
+				[self fetchFavsForAllShows];
+			});
+		}
+	});
+}
+
+- (void)fetchFavsForAllShows {
+	for (NSInteger i = 0; i < shows.count; ++i) {
+		[self fetchFavsForShowAtSection:i];
+	}
+}
+
+- (void)fetchFavsForShowAtSection:(NSInteger)section {
+	TVShow *show = [shows objectAtIndex:section];
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		@try {
+			NSError *error;
+			NSString *queryString = [NSString stringWithFormat:@"SELECT * FROM Episode NATURAL JOIN FavouriteE WHERE sid = %li AND uid = %li", show.sid, [DBManager sharedManager].user.uid];
+			NSArray *results = [[DBManager sharedManager] dbExecuteQuery:queryString error:&error];
+			show.episodes = [Episode returnArrayFromJSONStructure:results];
+		}
+		@catch (NSException *exception) {
+			NSLog(@"Fetch error: %@", exception.reason);
+		}
+		@finally {
+			dispatch_sync(dispatch_get_main_queue(), ^{
+				if (show.episodes.count > 0) {
+					[self.tableView reloadData];
+				}
+			});
+		}
+	});
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 0;
+    return shows.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+	TVShow *show = [shows objectAtIndex:section];
+    return show.episodes.count;
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
+    FavouriteTableViewCell *cell = (FavouriteTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"favCell" forIndexPath:indexPath];
+	if (cell == nil)
+		cell = [[FavouriteTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"favCell"];
     // Configure the cell...
-    
+	
+	TVShow *show = [shows objectAtIndex:indexPath.section];
+	Episode *episode = [show.episodes objectAtIndex:indexPath.row];
+	
+	cell.episodeNoLabel.text = [NSString stringWithFormat:@"%lix%.2li", episode.sno, episode.eno];
+	cell.episodeNameLabel.text = episode.name;
+	cell.episodeAirdateLabel.text = episode.airdate;
+	
+	[cell.favButton addTarget:self action:@selector(unfavouriteEpisode:) forControlEvents:UIControlEventTouchUpInside];
+	
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	TVShow *show = [shows objectAtIndex:section];
+	return [NSString stringWithFormat:@"%@ (%li)", show.name, show.episodes.count];
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+- (void)unfavouriteEpisode:(id)sender {
+	CGPoint location = [sender convertPoint:CGPointZero toView:self.tableView];
+	NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:location];
+	TVShow *show = [shows objectAtIndex:indexPath.section];
+	Episode *episode = [show.episodes objectAtIndex:indexPath.row];
+	@try {
+		NSError *error;
+		NSString *queryString = [NSString stringWithFormat:@"DELETE FROM FavouriteE WHERE uid = %li AND sid = %li AND sno = %li AND eno = %li", [DBManager sharedManager].user.uid, show.sid, episode.sno, episode.eno];
+		if (![[DBManager sharedManager] dbExecuteUpdate:queryString error:&error]) {
+			NSLog(@"Error: %@", error.localizedDescription);
+		}
+	}
+	@catch (NSException *exception) {
+		NSLog(@"%s | Unable to delete", __PRETTY_FUNCTION__);
+	}
+	@finally {
+		[self fetchFavsForShowAtSection:indexPath.section];
+	}
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+	if ([segue.identifier isEqualToString:@"EpisodeDetailSegueFav"]) {
+		NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+		TVShow *show = [shows objectAtIndex:indexPath.section];
+		Episode *episode = [show.episodes objectAtIndex:indexPath.row];
+		EpisodeDetailViewController *edvc = [segue destinationViewController];
+		edvc.show = show;
+		edvc.episode = episode;
+	}
 }
-*/
 
 @end

@@ -17,4 +17,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *seenButton;
 
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
+
 @end

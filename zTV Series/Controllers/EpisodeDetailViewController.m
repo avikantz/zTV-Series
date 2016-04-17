@@ -43,9 +43,12 @@
 	self.episodeNameLabel.text = self.episode.name;
 	self.episodeOverviewLabel.text = self.episode.overview;
 	
-	[self.backgroundImageView sd_setImageWithURL:self.episode.imageURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+	[self.backgroundImageView sd_setImageWithURL:self.show.imageURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
 		self.backgroundImageView.image = [image applyDarkEffect];
 	}];
+//	[self.backgroundImageView sd_setImageWithURL:self.episode.imageURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//		self.backgroundImageView.image = [image applyDarkEffect];
+//	}];
 	
 	self.backgroundImageView.clipsToBounds = YES;
 	

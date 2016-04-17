@@ -31,7 +31,7 @@
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		@try {
 			NSError *error;
-			NSString *queryString = [NSString stringWithFormat:@"SELECT * FROM TVShow WHERE sid IN (SELECT sid FROM Following WHERE uid = %li)", [DBManager sharedManager].user.uid];
+			NSString *queryString = [NSString stringWithFormat:@"SELECT * FROM TVShow WHERE sid IN (SELECT sid FROM Following WHERE uid = %li) ORDER BY name", [DBManager sharedManager].user.uid];
 			NSArray *results = [[DBManager sharedManager] dbExecuteQuery:queryString error:&error];
 			shows = [TVShow returnArrayFromJSONStructure:results];
 			if (error) {
@@ -72,6 +72,11 @@
 	
 	[cell.seenButton addTarget:self action:@selector(didPressSeenButton:) forControlEvents:UIControlEventTouchUpInside];
 	
+	cell.backgroundImageView.clipsToBounds = YES;
+	[cell.backgroundImageView sd_setImageWithURL:show.imageURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+		cell.backgroundImageView.image = [image applyExtraLightEffect];
+	}];
+	
     return cell;
 }
 
@@ -91,6 +96,8 @@
 				if (show.episodes.count == 0) {
 					cell.epsNameLabel.text = @"All Watched!";
 					cell.epsCountLabek.text = @"¿";
+					[shows removeObject:show];
+					[self.tableView reloadData];
 				}
 				else {
 					Episode *eps = show.episodes.firstObject;

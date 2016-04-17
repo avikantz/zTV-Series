@@ -18,6 +18,7 @@
 		5901CCFA1C7E33A700656CE1 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5901CCF91C7E33A700656CE1 /* DBManager.m */; };
 		5959BC4A1CC38F5600031EDA /* ToWatchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5959BC491CC38F5600031EDA /* ToWatchTableViewCell.m */; };
 		5959BC4D1CC3B7D900031EDA /* ToWatchDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5959BC4C1CC3B7D900031EDA /* ToWatchDetailTableViewController.m */; };
+		5959BC501CC3F63900031EDA /* FavouriteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5959BC4F1CC3F63900031EDA /* FavouriteTableViewCell.m */; };
 		597096B01C7EC0AC0080B59B /* OTVSeries.db in Resources */ = {isa = PBXBuildFile; fileRef = 597096AF1C7EC0AC0080B59B /* OTVSeries.db */; };
 		597096B81C7ED8FD0080B59B /* FavouritesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 597096B71C7ED8FD0080B59B /* FavouritesTableViewController.m */; };
 		597096BC1C7ED9090080B59B /* MyShowsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 597096BB1C7ED9090080B59B /* MyShowsTableViewController.m */; };
@@ -67,6 +68,8 @@
 		5959BC491CC38F5600031EDA /* ToWatchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ToWatchTableViewCell.m; path = Cells/ToWatchTableViewCell.m; sourceTree = "<group>"; };
 		5959BC4B1CC3B7D900031EDA /* ToWatchDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ToWatchDetailTableViewController.h; path = Controllers/ToWatchDetailTableViewController.h; sourceTree = "<group>"; };
 		5959BC4C1CC3B7D900031EDA /* ToWatchDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ToWatchDetailTableViewController.m; path = Controllers/ToWatchDetailTableViewController.m; sourceTree = "<group>"; };
+		5959BC4E1CC3F63900031EDA /* FavouriteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavouriteTableViewCell.h; path = Cells/FavouriteTableViewCell.h; sourceTree = "<group>"; };
+		5959BC4F1CC3F63900031EDA /* FavouriteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavouriteTableViewCell.m; path = Cells/FavouriteTableViewCell.m; sourceTree = "<group>"; };
 		597096AF1C7EC0AC0080B59B /* OTVSeries.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = OTVSeries.db; sourceTree = "<group>"; };
 		597096B61C7ED8FD0080B59B /* FavouritesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavouritesTableViewController.h; path = Controllers/FavouritesTableViewController.h; sourceTree = "<group>"; };
 		597096B71C7ED8FD0080B59B /* FavouritesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavouritesTableViewController.m; path = Controllers/FavouritesTableViewController.m; sourceTree = "<group>"; };
@@ -332,6 +335,8 @@
 				598F5FDB1C7EEEE300BD59A8 /* ShowsTableViewCell.m */,
 				5959BC481CC38F5600031EDA /* ToWatchTableViewCell.h */,
 				5959BC491CC38F5600031EDA /* ToWatchTableViewCell.m */,
+				5959BC4E1CC3F63900031EDA /* FavouriteTableViewCell.h */,
+				5959BC4F1CC3F63900031EDA /* FavouriteTableViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -580,6 +585,7 @@
 				597096BF1C7ED9140080B59B /* ToWatchTableViewController.m in Sources */,
 				598F5FDC1C7EEEE300BD59A8 /* ShowsTableViewCell.m in Sources */,
 				598F5FE81C7EF17C00BD59A8 /* DynamicLabel.m in Sources */,
+				5959BC501CC3F63900031EDA /* FavouriteTableViewCell.m in Sources */,
 				5901CCF31C7E2CEA00656CE1 /* RawQueryViewController.m in Sources */,
 				598F60141C7F5E2800BD59A8 /* YokoTextField.swift in Sources */,
 				598F60121C7F5E2800BD59A8 /* AkiraTextField.swift in Sources */,
