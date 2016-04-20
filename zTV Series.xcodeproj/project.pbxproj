@@ -19,6 +19,11 @@
 		5959BC4A1CC38F5600031EDA /* ToWatchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5959BC491CC38F5600031EDA /* ToWatchTableViewCell.m */; };
 		5959BC4D1CC3B7D900031EDA /* ToWatchDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5959BC4C1CC3B7D900031EDA /* ToWatchDetailTableViewController.m */; };
 		5959BC501CC3F63900031EDA /* FavouriteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5959BC4F1CC3F63900031EDA /* FavouriteTableViewCell.m */; };
+		59646BCA1CC73CF7004B289C /* CastTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59646BC91CC73CF7004B289C /* CastTableViewController.m */; };
+		59646BCE1CC73D51004B289C /* CastTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59646BCD1CC73D51004B289C /* CastTableViewCell.m */; };
+		59646BD11CC73F97004B289C /* Cast.m in Sources */ = {isa = PBXBuildFile; fileRef = 59646BD01CC73F97004B289C /* Cast.m */; };
+		59646BD51CC74FD5004B289C /* CastDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59646BD41CC74FD5004B289C /* CastDetailViewController.m */; };
+		59646BD81CC75D16004B289C /* FavouriteActorsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59646BD71CC75D16004B289C /* FavouriteActorsTableViewController.m */; };
 		597096B01C7EC0AC0080B59B /* OTVSeries.db in Resources */ = {isa = PBXBuildFile; fileRef = 597096AF1C7EC0AC0080B59B /* OTVSeries.db */; };
 		597096B81C7ED8FD0080B59B /* FavouritesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 597096B71C7ED8FD0080B59B /* FavouritesTableViewController.m */; };
 		597096BC1C7ED9090080B59B /* MyShowsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 597096BB1C7ED9090080B59B /* MyShowsTableViewController.m */; };
@@ -70,6 +75,16 @@
 		5959BC4C1CC3B7D900031EDA /* ToWatchDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ToWatchDetailTableViewController.m; path = Controllers/ToWatchDetailTableViewController.m; sourceTree = "<group>"; };
 		5959BC4E1CC3F63900031EDA /* FavouriteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavouriteTableViewCell.h; path = Cells/FavouriteTableViewCell.h; sourceTree = "<group>"; };
 		5959BC4F1CC3F63900031EDA /* FavouriteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavouriteTableViewCell.m; path = Cells/FavouriteTableViewCell.m; sourceTree = "<group>"; };
+		59646BC81CC73CF7004B289C /* CastTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CastTableViewController.h; path = Controllers/CastTableViewController.h; sourceTree = "<group>"; };
+		59646BC91CC73CF7004B289C /* CastTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CastTableViewController.m; path = Controllers/CastTableViewController.m; sourceTree = "<group>"; };
+		59646BCC1CC73D51004B289C /* CastTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CastTableViewCell.h; path = Cells/CastTableViewCell.h; sourceTree = "<group>"; };
+		59646BCD1CC73D51004B289C /* CastTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CastTableViewCell.m; path = Cells/CastTableViewCell.m; sourceTree = "<group>"; };
+		59646BCF1CC73F97004B289C /* Cast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Cast.h; path = Model/Cast.h; sourceTree = "<group>"; };
+		59646BD01CC73F97004B289C /* Cast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Cast.m; path = Model/Cast.m; sourceTree = "<group>"; };
+		59646BD31CC74FD5004B289C /* CastDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CastDetailViewController.h; path = Controllers/CastDetailViewController.h; sourceTree = "<group>"; };
+		59646BD41CC74FD5004B289C /* CastDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CastDetailViewController.m; path = Controllers/CastDetailViewController.m; sourceTree = "<group>"; };
+		59646BD61CC75D16004B289C /* FavouriteActorsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavouriteActorsTableViewController.h; path = Controllers/FavouriteActorsTableViewController.h; sourceTree = "<group>"; };
+		59646BD71CC75D16004B289C /* FavouriteActorsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavouriteActorsTableViewController.m; path = Controllers/FavouriteActorsTableViewController.m; sourceTree = "<group>"; };
 		597096AF1C7EC0AC0080B59B /* OTVSeries.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = OTVSeries.db; sourceTree = "<group>"; };
 		597096B61C7ED8FD0080B59B /* FavouritesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavouritesTableViewController.h; path = Controllers/FavouritesTableViewController.h; sourceTree = "<group>"; };
 		597096B71C7ED8FD0080B59B /* FavouritesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavouritesTableViewController.m; path = Controllers/FavouritesTableViewController.m; sourceTree = "<group>"; };
@@ -232,6 +247,7 @@
 		5901CCDF1C7E065B00656CE1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				59646BD21CC73F9A004B289C /* Cast */,
 				598F60071C7F411A00BD59A8 /* User */,
 				598F60021C7F3BE800BD59A8 /* Comment */,
 				598F5FD51C7EE6F900BD59A8 /* TVShow */,
@@ -270,6 +286,26 @@
 			name = DBManager;
 			sourceTree = "<group>";
 		};
+		59646BCB1CC73CFA004B289C /* Cast */ = {
+			isa = PBXGroup;
+			children = (
+				59646BC81CC73CF7004B289C /* CastTableViewController.h */,
+				59646BC91CC73CF7004B289C /* CastTableViewController.m */,
+				59646BD31CC74FD5004B289C /* CastDetailViewController.h */,
+				59646BD41CC74FD5004B289C /* CastDetailViewController.m */,
+			);
+			name = Cast;
+			sourceTree = "<group>";
+		};
+		59646BD21CC73F9A004B289C /* Cast */ = {
+			isa = PBXGroup;
+			children = (
+				59646BCF1CC73F97004B289C /* Cast.h */,
+				59646BD01CC73F97004B289C /* Cast.m */,
+			);
+			name = Cast;
+			sourceTree = "<group>";
+		};
 		597096AE1C7EBA540080B59B /* Launch */ = {
 			isa = PBXGroup;
 			children = (
@@ -283,6 +319,8 @@
 			children = (
 				597096B61C7ED8FD0080B59B /* FavouritesTableViewController.h */,
 				597096B71C7ED8FD0080B59B /* FavouritesTableViewController.m */,
+				59646BD61CC75D16004B289C /* FavouriteActorsTableViewController.h */,
+				59646BD71CC75D16004B289C /* FavouriteActorsTableViewController.m */,
 			);
 			name = Favourites;
 			sourceTree = "<group>";
@@ -295,6 +333,7 @@
 				598F5FEB1C7F217200BD59A8 /* Show Detail */,
 				598F5FF61C7F32D600BD59A8 /* Episode Detail */,
 				597096C01C7EDA570080B59B /* Add */,
+				59646BCB1CC73CFA004B289C /* Cast */,
 			);
 			name = "My Shows";
 			sourceTree = "<group>";
@@ -337,6 +376,8 @@
 				5959BC491CC38F5600031EDA /* ToWatchTableViewCell.m */,
 				5959BC4E1CC3F63900031EDA /* FavouriteTableViewCell.h */,
 				5959BC4F1CC3F63900031EDA /* FavouriteTableViewCell.m */,
+				59646BCC1CC73D51004B289C /* CastTableViewCell.h */,
+				59646BCD1CC73D51004B289C /* CastTableViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -576,13 +617,16 @@
 				5959BC4A1CC38F5600031EDA /* ToWatchTableViewCell.m in Sources */,
 				598F600D1C7F50D300BD59A8 /* ZUser.m in Sources */,
 				598F5FFD1C7F390300BD59A8 /* GCPlaceholderTextView.m in Sources */,
+				59646BCA1CC73CF7004B289C /* CastTableViewController.m in Sources */,
 				5901CCC81C7E061500656CE1 /* AppDelegate.m in Sources */,
 				5901CCEA1C7E2B2E00656CE1 /* LoginTableViewController.m in Sources */,
 				598F60061C7F3BF800BD59A8 /* Comment.m in Sources */,
 				5901CCC51C7E061500656CE1 /* main.m in Sources */,
 				598F5FEA1C7EF17C00BD59A8 /* UnderlinedLabel.m in Sources */,
 				598F60161C7F5E5C00BD59A8 /* TextFieldsEffects.swift in Sources */,
+				59646BD51CC74FD5004B289C /* CastDetailViewController.m in Sources */,
 				597096BF1C7ED9140080B59B /* ToWatchTableViewController.m in Sources */,
+				59646BCE1CC73D51004B289C /* CastTableViewCell.m in Sources */,
 				598F5FDC1C7EEEE300BD59A8 /* ShowsTableViewCell.m in Sources */,
 				598F5FE81C7EF17C00BD59A8 /* DynamicLabel.m in Sources */,
 				5959BC501CC3F63900031EDA /* FavouriteTableViewCell.m in Sources */,
@@ -594,9 +638,11 @@
 				598F5FF51C7F260900BD59A8 /* Episode.m in Sources */,
 				598F5FEE1C7F219000BD59A8 /* ShowDetailViewController.m in Sources */,
 				597096C31C7EDA620080B59B /* AddShowTableViewController.m in Sources */,
+				59646BD11CC73F97004B289C /* Cast.m in Sources */,
 				598F60131C7F5E2800BD59A8 /* KaedeTextField.swift in Sources */,
 				598F5FF91C7F32E900BD59A8 /* EpisodeDetailViewController.m in Sources */,
 				598F5FE91C7EF17C00BD59A8 /* RoundedLabel.m in Sources */,
+				59646BD81CC75D16004B289C /* FavouriteActorsTableViewController.m in Sources */,
 				598F5FD81C7EE70700BD59A8 /* TVShow.m in Sources */,
 				5959BC4D1CC3B7D900031EDA /* ToWatchDetailTableViewController.m in Sources */,
 				5901CCF61C7E2E0200656CE1 /* RawQuerySetupTableViewController.m in Sources */,

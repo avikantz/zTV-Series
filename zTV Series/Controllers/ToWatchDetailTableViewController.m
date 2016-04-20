@@ -131,12 +131,24 @@
 		NSError *error;
 		NSString *queryString = [NSString stringWithFormat:@"SELECT * FROM Watched WHERE uid = %li AND sid = %li AND sno = %li AND eno = %li",[DBManager sharedManager].user.uid, episode.sid, episode.sno, episode.eno];
 		NSArray *results = [[DBManager sharedManager] dbExecuteQuery:queryString error:&error];
-		NSString *updateString;
+		__block NSString *updateString;
 		if (results.count > 0) {
+			// DELETE!
 			updateString = [NSString stringWithFormat:@"DELETE FROM Watched WHERE uid = %li AND sid = %li AND sno = %li AND eno = %li", [DBManager sharedManager].user.uid, episode.sid, episode.sno, episode.eno];
 		}
 		else {
-			updateString = [NSString stringWithFormat:@"INSERT INTO Watched (uid, sid, sno, eno) VALUES (%li, %li, %li, %li)", [DBManager sharedManager].user.uid, episode.sid, episode.sno, episode.eno];
+			// INSERT!
+//			NSString *prevEpsQuery = [NSString stringWithFormat:@"(SELECT sid, sno, eno FROM Episode WHERE sid = %li AND sno <= %li AND eno < %li) EXCEPT (SELECT sid, sno, eno FROM Watched WHERE uid = %li AND sid = %li AND sno <= %li AND eno < %li)", episode.sid, episode.sno, episode.eno, [DBManager sharedManager].user.uid, episode.sid, episode.sno, episode.eno];
+//			NSArray *pervEpsRes = [[DBManager sharedManager] dbExecuteQuery:prevEpsQuery error:nil];
+//			if (pervEpsRes.count > 0) {
+//				UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Check all?" message:@"Check previous episodes as watched?" preferredStyle:UIAlertControllerStyleActionSheet];
+//				UIAlertAction *checkAllAction = [UIAlertAction actionWithTitle:@"Check all" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//					updateString = [NSString stringWithFormat:@"INSERT INTO Watched (uid, sid, sno, eno) VALUES (%li, %li, %li, %li)", [DBManager sharedManager].user.uid, episode.sid, episode.sno, episode.eno];
+//				}];
+//			}
+//			else {
+				updateString = [NSString stringWithFormat:@"INSERT INTO Watched (uid, sid, sno, eno) VALUES (%li, %li, %li, %li)", [DBManager sharedManager].user.uid, episode.sid, episode.sno, episode.eno];
+//			}
 		}
 		[[DBManager sharedManager] dbExecuteUpdate:updateString error:&error];
 		dispatch_async(dispatch_get_main_queue(), ^{

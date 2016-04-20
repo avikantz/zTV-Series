@@ -44,7 +44,7 @@
 	self.episodeOverviewLabel.text = self.episode.overview;
 	
 	[self.backgroundImageView sd_setImageWithURL:self.show.imageURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-		self.backgroundImageView.image = [image applyDarkEffect];
+		self.backgroundImageView.image = [image applyTintEffectWithColor:GLOBAL_BACK_COLOR :12.0];
 	}];
 //	[self.backgroundImageView sd_setImageWithURL:self.episode.imageURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
 //		self.backgroundImageView.image = [image applyDarkEffect];
@@ -69,8 +69,6 @@
 	self.navigationController.navigationBar.shadowImage = [UIImage new];
 	self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
 	self.navigationController.view.backgroundColor = [UIColor clearColor];
-	self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName: [UIFont fontWithName:@"Futura-Medium" size:17.f], NSForegroundColorAttributeName: GLOBAL_BACK_COLOR};
-	
 	[self fetchComments];
 }
 
@@ -79,7 +77,6 @@
 	self.navigationController.navigationBar.shadowImage = nil;
 	self.navigationController.navigationBar.backgroundColor = nil;
 	self.navigationController.view.backgroundColor = nil;
-	self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName: [UIFont fontWithName:@"Futura-Medium" size:17.f], NSForegroundColorAttributeName: [UIColor darkTextColor]};
 }
 
 - (void)fetchComments {

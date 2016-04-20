@@ -177,6 +177,18 @@
 			SVHUD_FAILURE(error.localizedDescription);
 		}
 		
+		queryString = [NSString stringWithFormat:@"DELETE FROM FavouriteE WHERE sid = %li AND uid = %li", show.sid, [DBManager sharedManager].user.uid];
+		
+		if (![[DBManager sharedManager] dbExecuteUpdate:queryString error:&error]) {
+			SVHUD_FAILURE(error.localizedDescription);
+		}
+		
+		queryString = [NSString stringWithFormat:@"DELETE FROM Watched WHERE sid = %li AND uid = %li", show.sid, [DBManager sharedManager].user.uid];
+		
+		if (![[DBManager sharedManager] dbExecuteUpdate:queryString error:&error]) {
+			SVHUD_FAILURE(error.localizedDescription);
+		}
+		
 		[self fetchShows];
 		
 	}

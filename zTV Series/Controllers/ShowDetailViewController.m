@@ -8,6 +8,7 @@
 
 #import "ShowDetailViewController.h"
 #import "EpisodeDetailViewController.h"
+#import "CastTableViewController.h"
 
 @interface ShowDetailViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -44,7 +45,7 @@
 	self.overviewLabel.text = self.show.overview;
 	
 	[self.backgroundImageView sd_setImageWithURL:self.show.imageURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-		self.backgroundImageView.image = [image applyDarkEffect];
+		self.backgroundImageView.image = [image applyTintEffectWithColor:GLOBAL_BACK_COLOR :12.0];
 	}];
 	
 	self.backgroundImageView.clipsToBounds = YES;
@@ -61,6 +62,9 @@
 	UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
 	self.navigationItem.backBarButtonItem = backButton;
 	
+	UIBarButtonItem *castButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"actors"] style:UIBarButtonItemStylePlain target:self action:@selector(loadCastView:)];
+	self.navigationItem.rightBarButtonItem = castButton;
+	
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -68,8 +72,6 @@
 	self.navigationController.navigationBar.shadowImage = [UIImage new];
 	self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
 	self.navigationController.view.backgroundColor = [UIColor clearColor];
-	self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName: [UIFont fontWithName:@"Futura-Medium" size:17.f], NSForegroundColorAttributeName: GLOBAL_BACK_COLOR};
-	
 	[self fetchEpisodes];
 }
 
@@ -78,7 +80,6 @@
 	self.navigationController.navigationBar.shadowImage = nil;
 	self.navigationController.navigationBar.backgroundColor = nil;
 	self.navigationController.view.backgroundColor = nil;
-	self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName: [UIFont fontWithName:@"Futura-Medium" size:17.f], NSForegroundColorAttributeName: [UIColor darkTextColor]};
 }
 
 - (void)fetchEpisodes {
@@ -187,6 +188,16 @@
 		edvc.episode = episode;
 		
 	}
+	
+}
+
+- (void)loadCastView:(id)sender {
+	
+	CastTableViewController *ctvc = [self.storyboard instantiateViewControllerWithIdentifier:@"CastVC"];
+	
+	ctvc.show = self.show;
+	
+	[self.navigationController pushViewController:ctvc animated:YES];
 	
 }
 
