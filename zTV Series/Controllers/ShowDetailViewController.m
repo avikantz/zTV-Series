@@ -37,16 +37,6 @@
     // Do any additional setup after loading the view.
 	
 	self.title = self.show.name;
-	self.genresLabel.text = self.show.genres;
-	self.statusLabel.text = self.show.status;
-	self.channelLabel.text = [NSString stringWithFormat:@"%@ | %@", self.show.channel, self.show.country];
-	self.premieredLabel.text = self.show.premiered;
-	self.ratingLabel.text = self.show.rating;
-	self.overviewLabel.text = self.show.overview;
-	
-	[self.backgroundImageView sd_setImageWithURL:self.show.imageURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-		self.backgroundImageView.image = [image applyTintEffectWithColor:GLOBAL_BACK_COLOR :12.0];
-	}];
 	
 	self.backgroundImageView.clipsToBounds = YES;
 	
@@ -68,6 +58,19 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+	
+	self.title = self.show.name;
+	self.genresLabel.text = self.show.genres;
+	self.statusLabel.text = self.show.status;
+	self.channelLabel.text = [NSString stringWithFormat:@"%@ | %@", self.show.channel, self.show.country];
+	self.premieredLabel.text = self.show.premiered;
+	self.ratingLabel.text = self.show.rating;
+	self.overviewLabel.text = self.show.overview;
+	
+	[self.backgroundImageView sd_setImageWithURL:self.show.imageURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+		self.backgroundImageView.image = [image applyTintEffectWithColor:GLOBAL_BACK_COLOR :12.0];
+	}];
+	
 	[self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
 	self.navigationController.navigationBar.shadowImage = [UIImage new];
 	self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];

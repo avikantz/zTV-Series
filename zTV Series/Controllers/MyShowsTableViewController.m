@@ -76,9 +76,7 @@
 }
 
 - (void)fetchShows {
-	
-	[self fetchShowsOrderedBy:@""];
-	
+	[self fetchShowsOrderedBy:@"ORDER BY name"];
 }
 
 - (void)setupSearchController {
@@ -101,10 +99,10 @@
 		[self fetchShowsOrderedBy:@"ORDER BY name DESC"];
 	}];
 	UIAlertAction *premieredSortAction = [UIAlertAction actionWithTitle:@"Newest First" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-		[self fetchShowsOrderedBy:@"ORDER BY premiered"];
+		[self fetchShowsOrderedBy:@"ORDER BY premiered DESC"];
 	}];
 	UIAlertAction *premieredSortAction2 = [UIAlertAction actionWithTitle:@"Oldest First" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-		[self fetchShowsOrderedBy:@"ORDER BY premiered DESC"];
+		[self fetchShowsOrderedBy:@"ORDER BY premiered"];
 	}];
 	UIAlertAction *ratingSortAction = [UIAlertAction actionWithTitle:@"Rating" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 		[self fetchShowsOrderedBy:@"ORDER BY rating"];

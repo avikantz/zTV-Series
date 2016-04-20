@@ -7,6 +7,7 @@
 //
 
 #import "CastDetailViewController.h"
+#import "ShowDetailViewController.h"
 
 @interface CastDetailViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -20,6 +21,7 @@
 
 @implementation CastDetailViewController {
 	NSMutableArray *filmography;
+	BOOL shouldPushBack;
 }
 
 - (void)viewDidLoad {
@@ -35,6 +37,8 @@
 	[self fetchFilmography];
 	[self checkFavourite];
 	
+	shouldPushBack = [[self.navigationController.viewControllers objectAtIndex:1] isKindOfClass:[ShowDetailViewController class]];
+	
 }
 
 - (void)fetchFilmography {
@@ -45,7 +49,7 @@
 			
 			NSError *error;
 			
-			NSString *queryString = [NSString stringWithFormat:@"SELECT cname, name FROM Cast NATURAL JOIN TVShow WHERE aid = %li", self.actor.aid];
+			NSString *queryString = [NSString stringWithFormat:@"SELECT cname, name, sid FROM Cast NATURAL JOIN TVShow WHERE aid = %li", self.actor.aid];
 			
 			NSArray *results = [[DBManager sharedManager] dbExecuteQuery:queryString error:&error];
 			
@@ -133,13 +137,43 @@
 	cell.textLabel.text = [dict objectForKey:@"name"];
 	cell.detailTextLabel.text = [dict objectForKey:@"cname"];
 	
+	if (shouldPushBack) {
+		NSInteger sid = [dict[@"sid"] integerValue];
+		NSString *queryString = [NSString stringWithFormat:@"SELECT * FROM TVShow WHERE sid = %li AND sid IN (SELECT sid FROM Following WHERE uid = %li)", sid, [DBManager sharedManager].user.uid];
+		NSError *error;
+		NSArray *results = [[DBManager sharedManager] dbExecuteQuery:queryString error:&error];
+		if (results.count == 0)
+			cell.accessoryType = UITableViewCellAccessoryNone;
+		else
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	}
+	
 	return cell;
 }
 
 #pragma mark - Table view delegate
 
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+	return shouldPushBack;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (shouldPushBack) {
+		NSDictionary *dict = [filmography objectAtIndex:indexPath.row];
+		NSInteger sid = [dict[@"sid"] integerValue];
+		NSString *queryString = [NSString stringWithFormat:@"SELECT * FROM TVShow WHERE sid = %li AND sid IN (SELECT sid FROM Following WHERE uid = %li)", sid, [DBManager sharedManager].user.uid];
+		NSError *error;
+		NSArray *results = [[DBManager sharedManager] dbExecuteQuery:queryString error:&error];
+		NSDictionary *showDict = [results firstObject];
+		if (showDict) {
+			TVShow *show = [[TVShow alloc] initWithDict:showDict];
+			ShowDetailViewController *sdvc = [self.navigationController.viewControllers objectAtIndex:1];
+			sdvc.show = show;
+			[self.navigationController popToViewController:sdvc animated:YES];
+		}
+	}
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {

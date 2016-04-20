@@ -58,6 +58,7 @@
 	if (arr.count > 0) {
 		
 		NSLog(@"User already exists, logging in...");
+		SVHUD_SUCCESS(@"Logging in");
 	
 		self.user = [users firstObject];
 		
@@ -85,6 +86,7 @@
 		return NO;
 	
 	NSLog(@"Signing up in user: %@", username);
+	SVHUD_SUCCESS(@"Signing up");
 	
 	@try {
 		NSArray *arr = [self dbExecuteQuery:[NSString stringWithFormat:@"SELECT uid FROM User WHERE username = '%@'", username] error:nil];

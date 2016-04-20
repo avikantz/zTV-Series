@@ -44,9 +44,7 @@
 	[self.searchController.searchBar becomeFirstResponder];
 }
 
-- (void)fetchShows {
-	
-	SVHUD_SHOW;
+- (void)fetchShowsOrderedBy:(NSString *)ordering {
 	
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		
@@ -54,11 +52,11 @@
 			
 			NSError *error;
 			
-			NSString *queryString = [NSString stringWithFormat:@"SELECT * FROM TVShow WHERE sid NOT IN (SELECT sid FROM Following WHERE uid = %li) ORDER BY rating DESC", [DBManager sharedManager].user.uid];
+			NSString *queryString = [NSString stringWithFormat:@"SELECT * FROM TVShow WHERE sid NOT IN (SELECT sid FROM Following WHERE uid = %li) %@", [DBManager sharedManager].user.uid, ordering];
 			
 			NSArray *results = [[DBManager sharedManager] dbExecuteQuery:queryString error:&error];
 			
-			//			NSLog(@"Results : %@", results);
+//			NSLog(@"Results : %@", results);
 			
 			shows = [TVShow returnArrayFromJSONStructure:results];
 			fshows = [NSMutableArray arrayWithArray:shows];
@@ -72,13 +70,20 @@
 			NSLog(@"Fetch error: %@", exception.reason);
 		}
 		@finally {
-			SVHUD_HIDE;
 			dispatch_async(dispatch_get_main_queue(), ^{
+				SVHUD_HIDE;
 				[self.tableView reloadData];
+				[self updateSearchResultsForSearchController:self.searchController];
 			});
 		}
 		
 	});
+	
+}
+
+- (void)fetchShows {
+	
+	[self fetchShowsOrderedBy:@"ORDER BY name"];
 	
 }
 
@@ -95,6 +100,37 @@
 
 - (IBAction)doneAction:(id)sender {
 	[self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (IBAction)sortAction:(id)sender {
+	
+	UIAlertAction *nameSortAction = [UIAlertAction actionWithTitle:@"Name (Ascending)" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+		[self fetchShowsOrderedBy:@"ORDER BY name"];
+	}];
+	UIAlertAction *nameSortAction2 = [UIAlertAction actionWithTitle:@"Name (Descending)" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+		[self fetchShowsOrderedBy:@"ORDER BY name DESC"];
+	}];
+	UIAlertAction *premieredSortAction = [UIAlertAction actionWithTitle:@"Newest First" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+		[self fetchShowsOrderedBy:@"ORDER BY premiered DESC"];
+	}];
+	UIAlertAction *premieredSortAction2 = [UIAlertAction actionWithTitle:@"Oldest First" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+		[self fetchShowsOrderedBy:@"ORDER BY premiered"];
+	}];
+	UIAlertAction *ratingSortAction = [UIAlertAction actionWithTitle:@"Rating" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+		[self fetchShowsOrderedBy:@"ORDER BY rating"];
+	}];
+	UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+	
+	UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Sort" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+	[alertController addAction:nameSortAction];
+	[alertController addAction:nameSortAction2];
+	[alertController addAction:premieredSortAction];
+	[alertController addAction:premieredSortAction2];
+	[alertController addAction:ratingSortAction];
+	[alertController addAction:cancel];
+	
+	[self.navigationController presentViewController:alertController animated:YES completion:nil];
 }
 
 #pragma mark - Table view data source
@@ -142,8 +178,6 @@
 	}
 	
 	[self fetchShows];
-	
-	[self updateSearchResultsForSearchController:self.searchController];
 	
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
